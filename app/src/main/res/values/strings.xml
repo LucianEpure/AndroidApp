@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">MemoryApp</string>
+    <string name="name">Name</string>
+    <string name="insert_name">Insert name</string>
+    <string name="help_info">Help info</string>
+    <string name="insert_help">Insert help</string>
+    <string name="save">SAVE</string>
+    <string name="cancel">CANCEL</string>
+    <string name="title">Title</string>
+    <string name="insert_title">Insert title</string>
+    <string name="date">Date</string>
+    <string name="description">Description</string>
 </resources>
