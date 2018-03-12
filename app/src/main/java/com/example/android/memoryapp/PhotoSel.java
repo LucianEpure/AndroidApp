@@ -5,8 +5,12 @@ import android.content.Intent;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 
 public class PhotoSel extends AppCompatActivity {
+
+    Button momentBtn, friendBtn;
 
     int SELECT_FILE = 1;
     @Override
@@ -14,6 +18,23 @@ public class PhotoSel extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_photo_sel);
         dialog();
+        momentBtn = findViewById(R.id.button4);
+        momentBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent myIntent = new Intent(PhotoSel.this, MomentSetup.class);
+                startActivity(myIntent);
+            }
+        });
+        friendBtn=findViewById(R.id.button5);
+        friendBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent myIntent = new Intent(PhotoSel.this, FriendSetup.class);
+                startActivity(myIntent);
+            }
+        });
+
     }
 
     protected void dialog(){
@@ -33,7 +54,6 @@ public class PhotoSel extends AppCompatActivity {
                                 Intent.createChooser(intent, "Gallery"),
                                 SELECT_FILE);
                     } else if (options[which].equals("Cancel")) {
-
                         dialogInterface.dismiss();
                         finish();
                     }

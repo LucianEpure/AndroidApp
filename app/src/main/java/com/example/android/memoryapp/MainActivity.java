@@ -8,14 +8,14 @@ import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button saveMemory;
+    Button saveMemoryBtn;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        saveMemory = findViewById(R.id.saveMemory);
-        saveMemory.setOnClickListener(new View.OnClickListener() {
+        saveMemoryBtn = findViewById(R.id.saveMemory);
+        saveMemoryBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent myIntent = new Intent(MainActivity.this, PhotoSel.class);
