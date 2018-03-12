@@ -33,7 +33,7 @@
         android:layout_marginTop="8dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="@string/insert_title"
+        android:hint="@string/insert_title"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.209"
@@ -94,6 +94,7 @@
 
     <EditText
         android:id="@+id/editText5"
+        android:hint="Add description"
         android:layout_width="wrap_content"
         android:layout_height="49dp"
         android:layout_marginBottom="8dp"

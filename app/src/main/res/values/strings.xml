@@ -10,4 +10,5 @@
     <string name="insert_title">Insert title</string>
     <string name="date">Date</string>
     <string name="description">Description</string>
+    <string name="write_description">Write description</string>
 </resources>
