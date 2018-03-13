@@ -19,6 +19,7 @@
         <activity android:name=".MomentSetup" />
         <activity android:name=".FriendSetup"></activity>
         <activity android:name=".PhotoSel"></activity>
+
     </application>
 
 </manifest>
