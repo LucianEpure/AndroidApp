@@ -40,6 +40,7 @@ public class MomentSetup extends AppCompatActivity implements DatePickerDialog.O
                 datePicker(view);
             }
         });
+        //save button adds data to database and prints message
         saveBtn = findViewById(R.id.saveBtn);
         saveBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -53,6 +54,8 @@ public class MomentSetup extends AppCompatActivity implements DatePickerDialog.O
                     Toast.makeText( MomentSetup.this,"data not inserted!",Toast.LENGTH_LONG).show();
             }
         });
+
+        //cancel button calls dialog
         cancelBtn = findViewById(R.id.cancelBtn);
         cancelBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -62,23 +65,22 @@ public class MomentSetup extends AppCompatActivity implements DatePickerDialog.O
         });
     }
 
-
-
-    //CANCEL button
+    //cance; button functionality
     protected void dialog(){
         AlertDialog.Builder builder = new AlertDialog.Builder(MomentSetup.this);
         builder.setMessage("Are you sure?");
         builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-
-
+                //to be implemented
+                finish();
             }
         });
         builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 dialogInterface.dismiss();
+                finish();
             }
         });
 

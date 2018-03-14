@@ -14,6 +14,8 @@ public class ShowMemory extends AppCompatActivity {
         setContentView(R.layout.activity_show_memory);
         showData();
     }
+
+    //Show all data from table
     public void showData(){
         Cursor data = MainActivity.myDb.getAllData();
         if (data.getCount() == 0)
@@ -32,6 +34,7 @@ public class ShowMemory extends AppCompatActivity {
         }
         showMessage("Data",buffer.toString());
     }
+    //Printing message with data from row
     public void showMessage(String title, String message){
         AlertDialog.Builder builder = new AlertDialog.Builder(ShowMemory.this);
         builder.setCancelable(true);
