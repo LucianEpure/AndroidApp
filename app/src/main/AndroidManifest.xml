@@ -17,9 +17,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".MomentSetup" />
-        <activity android:name=".FriendSetup"></activity>
-        <activity android:name=".PhotoSel"></activity>
-
+        <activity android:name=".FriendSetup" />
+        <activity android:name=".PhotoSel" />
+        <activity android:name=".ShowMemory"></activity>
     </application>
 
 </manifest>
