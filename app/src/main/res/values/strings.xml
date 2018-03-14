@@ -11,4 +11,6 @@
     <string name="date">Date</string>
     <string name="description">Description</string>
     <string name="write_description">Write description</string>
+    <string name="action_reset">Reset</string>
+    <string name="up">Up</string>
 </resources>

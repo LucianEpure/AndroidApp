@@ -9,6 +9,9 @@ import android.widget.Button;
 public class MainActivity extends AppCompatActivity {
 
     Button saveMemoryBtn;
+    Button showMemoriesBtn;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,5 +25,16 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(myIntent);
             }
         });
+
+        showMemoriesBtn = findViewById(R.id.showMemories);
+        showMemoriesBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent myIntent = new Intent(MainActivity.this, ListMemories.class);
+                startActivity(myIntent);
+            }
+        });
+
+
     }
 }
