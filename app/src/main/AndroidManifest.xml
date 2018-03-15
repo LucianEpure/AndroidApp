@@ -21,6 +21,7 @@
         <activity android:name=".PhotoSel" />
         <activity android:name=".ListMemories" />
         <activity android:name=".OneMemoryDisplay"></activity>
+        <activity android:name=".ShowMemory"></activity>
     </application>
 
 </manifest>

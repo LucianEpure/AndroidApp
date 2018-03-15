@@ -23,6 +23,7 @@ public class PhotoSel extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent myIntent = new Intent(PhotoSel.this, MomentSetup.class);
+                finish(); //finishes this activity so when going back it will appear no more
                 startActivity(myIntent);
             }
         });
@@ -31,6 +32,7 @@ public class PhotoSel extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent myIntent = new Intent(PhotoSel.this, FriendSetup.class);
+                finish();
                 startActivity(myIntent);
             }
         });
