@@ -29,7 +29,7 @@ public class  ListMemories extends AppCompatActivity
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         myNumbersList.setLayoutManager(layoutManager);
 
-       Cursor cursor = dbHelper.getAllData();
+       Cursor cursor = dbHelper.getAllData("Memory");
 
         myAdapter = new GreenAdapter(cursor, this);
         myNumbersList.setAdapter(myAdapter);
