@@ -9,8 +9,10 @@ import android.widget.Button;
 public class MainActivity extends AppCompatActivity {
 
     Button saveMemoryBtn;
-    Button showMemory;
+    Button showMemoriesBtn;
+    Button databaseTestBtn;
     static DataBaseHelper myDb;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,8 +28,8 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(selPhoto);
             }
         });
-        showMemory = findViewById(R.id.showMemory);
-        showMemory.setOnClickListener(new View.OnClickListener() {
+        databaseTestBtn = findViewById(R.id.databaseTest);
+        databaseTestBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent showMemory = new Intent(MainActivity.this,ShowMemory.class);
@@ -35,5 +37,16 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+
+        showMemoriesBtn = findViewById(R.id.showMemories);
+        showMemoriesBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent myIntent = new Intent(MainActivity.this, ListMemories.class);
+                startActivity(myIntent);
+            }
+        });
+
+
     }
 }
