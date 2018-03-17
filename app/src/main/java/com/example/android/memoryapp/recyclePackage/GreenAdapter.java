@@ -1,37 +1,33 @@
 package com.example.android.memoryapp.recyclePackage;
 
+import com.example.android.memoryapp.DayCounter;
 import com.example.android.memoryapp.R;
 import android.content.Context;
+import android.database.Cursor;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import com.example.android.memoryapp.recyclePackage.ListItemClickListener;
+
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
+
 
 public class GreenAdapter extends RecyclerView.Adapter<GreenAdapter.NumberViewHolder> {
 
-    private static final String TAG = GreenAdapter.class.getSimpleName();
+    private Cursor mCursor;
     final private ListItemClickListener mOnClickListener;
-    private static int viewHolderCount;
-
-    private int mNumberItems;
 
 
-    // COMPLETED (4) Add a ListItemClickListener as a parameter to the constructor and store it in mOnClickListener
-    /**
-     * Constructor for GreenAdapter that accepts a number of items to display and the specification
-     * for the ListItemClickListener.
-     *
-     * @param numberOfItems Number of items to display in list
-     * @param listener Listener for list item clicks
-     */
-    public GreenAdapter(int numberOfItems, ListItemClickListener listener) {
-        mNumberItems = numberOfItems;
+    public GreenAdapter(Cursor cursor, ListItemClickListener listener) {
+        mCursor = cursor;
         mOnClickListener = listener;
-        viewHolderCount = 0;
     }
 
     /**
@@ -55,10 +51,7 @@ public class GreenAdapter extends RecyclerView.Adapter<GreenAdapter.NumberViewHo
         View view = inflater.inflate(layoutIdForListItem, viewGroup, shouldAttachToParentImmediately);
         NumberViewHolder viewHolder = new NumberViewHolder(view);
 
-        viewHolder.viewHolderIndex.setText("ViewHolder index: " + viewHolderCount);
 
-        viewHolderCount++;
-        Log.d(TAG, "onCreateViewHolder: number of ViewHolders created: "+ viewHolderCount);
         return viewHolder;
     }
 
@@ -74,9 +67,23 @@ public class GreenAdapter extends RecyclerView.Adapter<GreenAdapter.NumberViewHo
      */
     @Override
     public void onBindViewHolder(NumberViewHolder holder, int position) {
-        Log.d(TAG, "#" + position);
-        holder.bind(position);
+
+        if (!mCursor.moveToPosition(position))
+            return; // bail if returned null
+        String title = mCursor.getString(1);
+        DayCounter count = new DayCounter(mCursor.getString(2));
+        long noDays =  count.getDaysPassed();
+        String daysString;
+        if (noDays<0){
+            daysString = Long.toString(0-noDays)+" days from today " ;
+        }else{
+            daysString = Long.toString(noDays)+ " days ago ";
+        }
+        holder.titleTextView.setText(title);
+        holder.daysPassedTextView.setText(daysString);
     }
+
+
 
     /**
      * This method simply returns the number of items to display. It is used behind the scenes
@@ -86,20 +93,17 @@ public class GreenAdapter extends RecyclerView.Adapter<GreenAdapter.NumberViewHo
      */
     @Override
     public int getItemCount() {
-        return mNumberItems;
+        return mCursor.getCount();
     }
 
 
     /**
      * Cache of the children views for a list item.
      */
-    class NumberViewHolder extends RecyclerView.ViewHolder
-            implements OnClickListener {
+    class NumberViewHolder extends RecyclerView.ViewHolder implements OnClickListener {
 
-        // Will display the position in the list, ie 0 through getItemCount() - 1
-        TextView listItemNumberView;
-        // Will display which ViewHolder is displaying this data
-        TextView viewHolderIndex;
+        TextView titleTextView;
+        TextView daysPassedTextView;
 
         /**
          * Constructor for our ViewHolder. Within this constructor, we get a reference to our
@@ -110,19 +114,10 @@ public class GreenAdapter extends RecyclerView.Adapter<GreenAdapter.NumberViewHo
         public NumberViewHolder(View itemView) {
             super(itemView);
 
-            listItemNumberView = (TextView) itemView.findViewById(R.id.tv_item_number);
-            viewHolderIndex = (TextView) itemView.findViewById(R.id.tv_view_holder_instance);
+            titleTextView = (TextView) itemView.findViewById(R.id.titleTextView);
+            daysPassedTextView = (TextView) itemView.findViewById(R.id.daysPassedTextView);
             //Call setOnClickListener on the View passed into the constructor (use 'this' as the OnClickListener)
             itemView.setOnClickListener(this);
-        }
-
-        /**
-         * A method we wrote for convenience. This method will take an integer as input and
-         * use that integer to display the appropriate text within a list item.
-         * @param listIndex Position of the item in the list
-         */
-        void bind(int listIndex) {
-            listItemNumberView.setText(String.valueOf(listIndex));
         }
 
 
