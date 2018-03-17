@@ -13,4 +13,7 @@
     <string name="write_description">Write description</string>
     <string name="action_reset">Reset</string>
     <string name="up">Up</string>
+    <string name="dbtest">DBtest</string>
+    <string name="title_of_memory">title of memory</string>
+    <string name="no_of_days_passed">no of days passed</string>
 </resources>

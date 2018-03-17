@@ -1,28 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:padding="16dp">
+    android:layout_height="56dp"
+    android:gravity="center_vertical"
+    android:orientation="horizontal">
 
     <TextView
-        android:id="@+id/tv_item_number"
-        style="@style/TextAppearance.AppCompat.Title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical|start"
-        android:fontFamily="monospace"
-        android:textSize="42sp"
-        tools:text="#42" />
-
+        android:id="@+id/daysPassedTextView"
+        android:layout_width="150dp"
+        android:layout_height="60dp"
+        android:layout_gravity="center"
+        android:background="@drawable/ic_launcher_background"
+        android:fontFamily="sans-serif"
+        android:gravity="center"
+        android:textColor="@android:color/white"
+        android:textSize="16sp"
+        android:text="@string/no_of_days_passed"/>
     <TextView
-        android:id="@+id/tv_view_holder_instance"
-        style="@style/TextAppearance.AppCompat.Title"
-        android:layout_width="wrap_content"
+        android:id="@+id/titleTextView"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical|end"
-        android:fontFamily="monospace"
-        android:textColor="#000"
-        tools:text="ViewHolder instance: 7" />
-</FrameLayout>
+        android:layout_marginLeft="16dp"
+        android:layout_weight="1"
+        android:fontFamily="sans-serif"
+        android:textSize="16sp"
+        android:text="@string/title_of_memory"/>
+
+
+</LinearLayout>

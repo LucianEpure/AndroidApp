@@ -29,10 +29,10 @@
         android:layout_marginTop="8dp"
         android:text="Show Memories"
         app:layout_constraintBottom_toTopOf="@+id/rememberGame"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/databaseTest"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/saveMemory"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.66" />
 
     <Button
         android:id="@+id/rememberGame"
@@ -46,4 +46,18 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/databaseTest"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginBottom="8dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/dbtest"
+        app:layout_constraintBottom_toTopOf="@+id/rememberGame"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/saveMemory"
+        app:layout_constraintVertical_bias="0.66" />
+
 </android.support.constraint.ConstraintLayout>
