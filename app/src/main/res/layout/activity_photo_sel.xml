@@ -7,35 +7,32 @@
     tools:context="com.example.android.memoryapp.PhotoSel">
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/photoView"
         android:layout_width="354dp"
-        android:layout_height="369dp"
-        android:layout_marginBottom="8dp"
+        android:layout_height="329dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         android:src="@color/abc_input_method_navigation_guard"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.063" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/button4"
+        android:id="@+id/momentBtn"
         android:layout_width="115dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="32dp"
-        android:layout_marginStart="36dp"
+        android:layout_marginStart="32dp"
         android:layout_marginTop="8dp"
         android:text="Moment"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.995" />
+        app:layout_constraintTop_toBottomOf="@+id/photoView"
+        app:layout_constraintVertical_bias="0.82" />
 
     <Button
-        android:id="@+id/button5"
+        android:id="@+id/friendBtn"
         android:layout_width="124dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
@@ -45,8 +42,23 @@
         android:text="Friend"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.721"
-        app:layout_constraintStart_toEndOf="@+id/button4"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.941" />
+        app:layout_constraintHorizontal_bias="0.762"
+        app:layout_constraintStart_toEndOf="@+id/momentBtn"
+        app:layout_constraintTop_toBottomOf="@+id/photoView"
+        app:layout_constraintVertical_bias="0.626" />
+
+    <Button
+        android:id="@+id/rotateBtn"
+        android:layout_width="114dp"
+        android:layout_height="42dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="Rotate"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/photoView"
+        app:layout_constraintVertical_bias="0.06" />
 </android.support.constraint.ConstraintLayout>

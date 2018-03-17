@@ -3,6 +3,8 @@ package com.example.android.memoryapp;
 import android.app.DatePickerDialog;
 import android.app.DialogFragment;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.graphics.Bitmap;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -25,6 +27,8 @@ public class MomentSetup extends AppCompatActivity implements DatePickerDialog.O
     TextView showDate;
     EditText title;
     EditText description;
+    byte[] imageByte;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,6 +37,8 @@ public class MomentSetup extends AppCompatActivity implements DatePickerDialog.O
         pickDateBtn = findViewById(R.id.pickDateBtn);
         title = findViewById(R.id.titleEt);
         description = findViewById(R.id.descriptionEt);
+        Intent myIntent = getIntent();                  //retrieve the image from the previous activity
+        imageByte = myIntent.getByteArrayExtra("image");
         pickDateBtn.setOnClickListener( new View.OnClickListener(){
 
             @Override
@@ -40,19 +46,22 @@ public class MomentSetup extends AppCompatActivity implements DatePickerDialog.O
                 datePicker(view);
             }
         });
+
+
         //save button adds data to database and prints message
         saveBtn = findViewById(R.id.saveBtn);
         saveBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText( MomentSetup.this,"Save pressed",Toast.LENGTH_LONG);
                 boolean isInserted;
-                isInserted = MainActivity.myDb.insertData(title.getText().toString() , showDate.getText().toString(),description.getText().toString(),"aaaa");
+                isInserted = MainActivity.myDb.insertDataMemory(title.getText().toString() , showDate.getText().toString(),description.getText().toString(),imageByte);
                 if(isInserted == true)
                     Toast.makeText( MomentSetup.this,"data inserted!",Toast.LENGTH_LONG).show();
                 else
                     Toast.makeText( MomentSetup.this,"data not inserted!",Toast.LENGTH_LONG).show();
+                finish();
             }
+
         });
 
         //cancel button calls dialog
@@ -65,7 +74,7 @@ public class MomentSetup extends AppCompatActivity implements DatePickerDialog.O
         });
     }
 
-    //cance; button functionality
+    //cancel button functionality
     protected void dialog(){
         AlertDialog.Builder builder = new AlertDialog.Builder(MomentSetup.this);
         builder.setMessage("Are you sure?");

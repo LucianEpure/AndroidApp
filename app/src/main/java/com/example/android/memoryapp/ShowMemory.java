@@ -1,23 +1,32 @@
 package com.example.android.memoryapp;
 
+import android.content.Intent;
 import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 public class ShowMemory extends AppCompatActivity {
 
+
+    ImageView imageViewTest; //is used just for testing the retrival of image from database
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_memory);
+        imageViewTest = findViewById(R.id.imageViewTest);
         showData();
     }
 
     //Show all data from table
+
     public void showData(){
-        Cursor data = MainActivity.myDb.getAllData();
+
+        Cursor data = MainActivity.myDb.getAllData("Memory");
         if (data.getCount() == 0)
         {
             showMessage("Error","Nothing found");
@@ -29,8 +38,8 @@ public class ShowMemory extends AppCompatActivity {
             buffer.append("Title:"+data.getString(1)+"\n");
             buffer.append("Date:"+data.getString(2)+"\n");
             buffer.append("Desc:"+data.getString(3)+"\n");
-            buffer.append("Image:"+data.getString(4)+"\n\n");
-
+            Bitmap bitmap = BitmapFactory.decodeByteArray(data.getBlob(4), 0, data.getBlob(4).length);
+            imageViewTest.setImageBitmap(bitmap);
         }
         showMessage("Data",buffer.toString());
     }
