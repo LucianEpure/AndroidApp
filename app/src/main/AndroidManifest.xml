@@ -3,6 +3,7 @@
     package="com.example.android.memoryapp">
     <uses-permission android:name="android.permission.CAMERA"/>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.INTERNET" />
     <uses-feature android:name="android.hardware.camera" />
 
     <uses-permission android:name="android.hardware.camera2.full"/>
@@ -13,6 +14,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
+        <meta-data android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/facebook_ap_id"/>
+
+        
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -26,6 +32,11 @@
         <activity android:name=".ListMemories" />
         <activity android:name=".OneMemoryDisplay"></activity>
         <activity android:name=".ShowMemory"></activity>
+
+        <provider
+            android:authorities="com.facebook.app.FacebookContentProvider143977473093837"
+            android:name="com.facebook.FacebookContentProvider"
+            android:exported="true"/>
     </application>
 
 </manifest>

@@ -16,4 +16,7 @@
     <string name="dbtest">DBtest</string>
     <string name="title_of_memory">title of memory</string>
     <string name="no_of_days_passed">no of days passed</string>
+    <string name="facebook_ap_id">143977473093837</string>>
+    <string name="facebook_login_app_protocol_scheme">fb143977473093837</string>
+    <string name="share">Share</string>
 </resources>

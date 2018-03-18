@@ -9,7 +9,6 @@ import android.support.v7.widget.RecyclerView;
 import com.example.android.memoryapp.recyclePackage.ListItemClickListener;
 import com.example.android.memoryapp.recyclePackage.GreenAdapter;
 
-
 public class  ListMemories extends AppCompatActivity
         implements ListItemClickListener {
 
@@ -25,11 +24,9 @@ public class  ListMemories extends AppCompatActivity
         setContentView(R.layout.activity_list_memories);
         myNumbersList = (RecyclerView) findViewById(R.id.rv_numbers);
 
-
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         myNumbersList.setLayoutManager(layoutManager);
-
-       Cursor cursor = dbHelper.getAllData("Memory");
+        Cursor cursor = dbHelper.getAllData("Memory");
 
         myAdapter = new GreenAdapter(cursor, this);
         myNumbersList.setAdapter(myAdapter);
