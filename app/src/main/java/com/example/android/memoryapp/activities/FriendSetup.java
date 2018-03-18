@@ -1,6 +1,7 @@
 package com.example.android.memoryapp.activities;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -19,6 +20,7 @@ public class FriendSetup extends AppCompatActivity {
     EditText firstNameEt ;
     EditText lastNameEt ;
     EditText helpInfoEt ;
+    byte[] imageByte;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,13 +29,15 @@ public class FriendSetup extends AppCompatActivity {
         firstNameEt = findViewById(R.id.firstNameEt);
         lastNameEt = findViewById(R.id.lastNameEt);
         helpInfoEt = findViewById(R.id.helpInfoEt);
+        Intent myIntent = getIntent();                  //retrieve the image from the previous activity
+        imageByte = myIntent.getByteArrayExtra("image");
 
         saveBtn = findViewById(R.id.saveBtn);
         saveBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 boolean isInserted;
-                isInserted = DataBaseHelper.getInstance(FriendSetup.this).insertDataPerson(firstNameEt.getText().toString(),lastNameEt.getText().toString(),helpInfoEt.getText().toString(),"AAA");
+                isInserted = DataBaseHelper.getInstance(FriendSetup.this).insertDataPerson(firstNameEt.getText().toString(),lastNameEt.getText().toString(),helpInfoEt.getText().toString(),imageByte);
                 if(isInserted == true)
                     Toast.makeText( FriendSetup.this,"Friend Added",Toast.LENGTH_LONG).show();
                 else

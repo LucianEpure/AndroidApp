@@ -50,11 +50,7 @@ public class PhotoSel extends AppCompatActivity {
         rotateBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               // BitmapDrawable btmDrawable = (BitmapDrawable)photoView.getDrawable();
-              //  Bitmap toRotateBitmap = btmDrawable.getBitmap();
-               // Bitmap rotatedBitmap = rotateBitmap(toRotateBitmap,90);
                 photoView.setRotation(90);
-                //photoView.setImageBitmap(rotatedBitmap);
             }
         });
 
@@ -73,8 +69,9 @@ public class PhotoSel extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent myIntent = new Intent(PhotoSel.this, FriendSetup.class);
-                finish();
+                myIntent.putExtra("image",imageByte);// send the image to the setup to be stored into data base
                 startActivity(myIntent);
+                finish();
             }
         });
 

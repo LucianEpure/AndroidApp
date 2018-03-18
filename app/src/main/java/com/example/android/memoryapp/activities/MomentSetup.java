@@ -57,9 +57,9 @@ public class MomentSetup extends AppCompatActivity implements DatePickerDialog.O
                 boolean isInserted;
                 isInserted = DataBaseHelper.getInstance(MomentSetup.this).insertDataMemory(title.getText().toString() , showDate.getText().toString(),description.getText().toString(),imageByte);
                 if(isInserted == true)
-                    Toast.makeText( MomentSetup.this,"data inserted!",Toast.LENGTH_LONG).show();
+                    Toast.makeText( MomentSetup.this,"Moment added!",Toast.LENGTH_LONG).show();
                 else
-                    Toast.makeText( MomentSetup.this,"data not inserted!",Toast.LENGTH_LONG).show();
+                    Toast.makeText( MomentSetup.this,"Failed to add moment!",Toast.LENGTH_LONG).show();
                 finish();
             }
 

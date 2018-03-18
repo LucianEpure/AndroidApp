@@ -7,7 +7,7 @@
     tools:context="com.example.android.memoryapp.MainActivity">
 
     <Button
-        android:id="@+id/saveMemory"
+        android:id="@+id/saveMemoryBtn"
         android:layout_width="185dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
@@ -31,7 +31,7 @@
         app:layout_constraintBottom_toTopOf="@+id/rememberGame"
         app:layout_constraintEnd_toStartOf="@+id/databaseTest"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/saveMemory"
+        app:layout_constraintTop_toBottomOf="@+id/saveMemoryBtn"
         app:layout_constraintVertical_bias="0.66" />
 
     <Button
@@ -57,7 +57,7 @@
         android:text="@string/dbtest"
         app:layout_constraintBottom_toTopOf="@+id/rememberGame"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/saveMemory"
+        app:layout_constraintTop_toBottomOf="@+id/saveMemoryBtn"
         app:layout_constraintVertical_bias="0.66" />
 
 </android.support.constraint.ConstraintLayout>

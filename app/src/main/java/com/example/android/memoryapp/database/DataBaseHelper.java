@@ -27,13 +27,13 @@ public class DataBaseHelper  extends SQLiteOpenHelper{
     public static final String COL1_2= "Title";
     public static final String COL1_3 = "Date";
     public static final String COL1_4 = "Description";
-    public static final String COL1_5 = "Image1";
+    public static final String COL1_5 = "Image";
     public static final String TABLE_NAME2 = "Person";
     public static final String COL2_1= "Id";
     public static final String COL2_2= "Name";
     public static final String COL2_3 = "Surname";
     public static final String COL2_4 = "Help";
-    public static final String COL2_5 = "Image2";
+    public static final String COL2_5 = "Image";
 
     private DataBaseHelper(Context context) {
         super(context, DATABASE_NAME, null, 1);
@@ -41,8 +41,8 @@ public class DataBaseHelper  extends SQLiteOpenHelper{
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
-        sqLiteDatabase.execSQL(" create table " + TABLE_NAME1 + " (ID INTEGER PRIMARY KEY AUTOINCREMENT,TITLE TEXT,DATE TEXT,DESCRIPTION TEXT,IMAGE1 BLOB)"); //BLOB)
-        sqLiteDatabase.execSQL(" create table " + TABLE_NAME2 + " (ID INTEGER PRIMARY KEY AUTOINCREMENT,NAME TEXT,SURNAME TEXT,HELP TEXT,IMAGE2 TEXT)");
+        sqLiteDatabase.execSQL(" create table " + TABLE_NAME1 + " (ID INTEGER PRIMARY KEY AUTOINCREMENT,TITLE TEXT,DATE TEXT,DESCRIPTION TEXT,IMAGE BLOB)"); //BLOB)
+        sqLiteDatabase.execSQL(" create table " + TABLE_NAME2 + " (ID INTEGER PRIMARY KEY AUTOINCREMENT,NAME TEXT,SURNAME TEXT,HELP TEXT,IMAGE BLOB)");
 
     }
 
@@ -153,6 +153,8 @@ public class DataBaseHelper  extends SQLiteOpenHelper{
 
     public boolean updateData(String id, String title, String date, String description, String image ){
         SQLiteDatabase sqLiteDatabase = instance.getWritableDatabase();
+    public boolean updateData(String id, String title, String date, String description, byte[] image ){
+        SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(COL1_1,id);
         contentValues.put(COL1_2,title);
