@@ -1,4 +1,4 @@
-package com.example.android.memoryapp;
+package com.example.android.memoryapp.activities;
 
 import android.app.Activity;
 import android.content.ContentResolver;
@@ -20,6 +20,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
+
+import com.example.android.memoryapp.R;
 
 import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;

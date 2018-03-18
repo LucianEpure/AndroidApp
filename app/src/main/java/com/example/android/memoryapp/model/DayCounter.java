@@ -1,4 +1,4 @@
-package com.example.android.memoryapp;
+package com.example.android.memoryapp.model;
 
 import java.util.Calendar;
 import java.util.Date;

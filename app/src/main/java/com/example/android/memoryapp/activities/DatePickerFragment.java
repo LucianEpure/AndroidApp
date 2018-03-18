@@ -1,4 +1,4 @@
-package com.example.android.memoryapp;
+package com.example.android.memoryapp.activities;
 
 import android.app.DatePickerDialog;
 import android.app.Dialog;

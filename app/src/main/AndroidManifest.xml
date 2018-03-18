@@ -19,19 +19,19 @@
             android:value="@string/facebook_ap_id"/>
 
         
-        <activity android:name=".MainActivity">
+        <activity android:name=".activities.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MomentSetup" />
-        <activity android:name=".FriendSetup" />
-        <activity android:name=".PhotoSel" />
-        <activity android:name=".ListMemories" />
-        <activity android:name=".OneMemoryDisplay"></activity>
-        <activity android:name=".ShowMemory"></activity>
+        <activity android:name=".activities.MomentSetup" />
+        <activity android:name=".activities.FriendSetup" />
+        <activity android:name=".activities.PhotoSel" />
+        <activity android:name=".activities.ListMemories" />
+        <activity android:name=".activities.OneMemoryDisplay"></activity>
+        <activity android:name=".activities.ShowMemory"></activity>
 
         <provider
             android:authorities="com.facebook.app.FacebookContentProvider143977473093837"

@@ -19,4 +19,5 @@
     <string name="facebook_ap_id">143977473093837</string>>
     <string name="facebook_login_app_protocol_scheme">fb143977473093837</string>
     <string name="share">Share</string>
+    <string name="title_of_mem">Title of mem</string>
 </resources>

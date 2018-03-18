@@ -1,15 +1,16 @@
-package com.example.android.memoryapp;
+package com.example.android.memoryapp.activities;
 
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.ButtonBarLayout;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import com.example.android.memoryapp.R;
+import com.example.android.memoryapp.database.DataBaseHelper;
 
 public class FriendSetup extends AppCompatActivity {
 
@@ -32,7 +33,7 @@ public class FriendSetup extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 boolean isInserted;
-                isInserted = MainActivity.myDb.insertDataPerson(firstNameEt.getText().toString(),lastNameEt.getText().toString(),helpInfoEt.getText().toString(),"AAA");
+                isInserted = DataBaseHelper.getInstance(FriendSetup.this).insertDataPerson(firstNameEt.getText().toString(),lastNameEt.getText().toString(),helpInfoEt.getText().toString(),"AAA");
                 if(isInserted == true)
                     Toast.makeText( FriendSetup.this,"Friend Added",Toast.LENGTH_LONG).show();
                 else

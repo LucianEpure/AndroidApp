@@ -1,14 +1,23 @@
-package com.example.android.memoryapp;
+package com.example.android.memoryapp.activities;
 
+import android.content.Intent;
+import android.database.Cursor;
+import android.database.DatabaseErrorHandler;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.android.memoryapp.R;
+import com.example.android.memoryapp.database.DataBaseHelper;
+import com.example.android.memoryapp.model.Memory;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
@@ -23,7 +32,10 @@ import com.squareup.picasso.Picasso;
 
 public class OneMemoryDisplay extends AppCompatActivity {
 
-    private TextView myDisplayText;
+    private TextView titleTextView;
+    private ImageView imageView;
+    private EditText descriptionTextView;
+
     CallbackManager callbackManager;
     ShareDialog shareDialog;
 
@@ -57,6 +69,25 @@ public class OneMemoryDisplay extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         FacebookSdk.sdkInitialize(this.getApplicationContext());
         setContentView(R.layout.activity_one_memory_display);
+
+
+        titleTextView= (TextView)findViewById(R.id.titleOneMem);
+        descriptionTextView= (EditText) findViewById(R.id.descriptionOneMem);
+        imageView =(ImageView) findViewById(R.id.imageOneMem);
+
+        Intent myIntent = getIntent();
+        int id=0;
+
+        if (myIntent.hasExtra("idMemory")) {
+            id = myIntent.getIntExtra("idMemory", 0);
+        }
+
+        Memory memory = DataBaseHelper.getInstance(OneMemoryDisplay.this).getMemoryById(id);
+        titleTextView.setText(memory.getTitle());
+        descriptionTextView.setText(memory.getDescription());
+
+        Bitmap bitmap = BitmapFactory.decodeByteArray(memory.getImage(), 0, memory.getImage().length);
+        imageView.setImageBitmap(bitmap);
     }
 
     @Override

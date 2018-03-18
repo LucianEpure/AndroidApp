@@ -1,10 +1,8 @@
-package com.example.android.memoryapp;
+package com.example.android.memoryapp.activities;
 
 import android.app.DatePickerDialog;
-import android.app.DialogFragment;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -14,6 +12,9 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.android.memoryapp.R;
+import com.example.android.memoryapp.database.DataBaseHelper;
 
 import java.text.DateFormat;
 import java.util.Calendar;
@@ -54,7 +55,7 @@ public class MomentSetup extends AppCompatActivity implements DatePickerDialog.O
             @Override
             public void onClick(View view) {
                 boolean isInserted;
-                isInserted = MainActivity.myDb.insertDataMemory(title.getText().toString() , showDate.getText().toString(),description.getText().toString(),imageByte);
+                isInserted = DataBaseHelper.getInstance(MomentSetup.this).insertDataMemory(title.getText().toString() , showDate.getText().toString(),description.getText().toString(),imageByte);
                 if(isInserted == true)
                     Toast.makeText( MomentSetup.this,"data inserted!",Toast.LENGTH_LONG).show();
                 else

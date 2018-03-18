@@ -1,6 +1,5 @@
-package com.example.android.memoryapp;
+package com.example.android.memoryapp.activities;
 
-import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -8,7 +7,9 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.ImageView;
-import android.widget.Toast;
+
+import com.example.android.memoryapp.R;
+import com.example.android.memoryapp.database.DataBaseHelper;
 
 public class ShowMemory extends AppCompatActivity {
 
@@ -26,7 +27,7 @@ public class ShowMemory extends AppCompatActivity {
 
     public void showData(){
 
-        Cursor data = MainActivity.myDb.getAllData("Memory");
+        Cursor data = DataBaseHelper.getInstance(ShowMemory.this).getAllData("Memory");
         if (data.getCount() == 0)
         {
             showMessage("Error","Nothing found");

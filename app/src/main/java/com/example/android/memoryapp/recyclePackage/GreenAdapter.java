@@ -1,9 +1,8 @@
 package com.example.android.memoryapp.recyclePackage;
-
-import com.example.android.memoryapp.DayCounter;
+import com.example.android.memoryapp.model.DayCounter;
 import com.example.android.memoryapp.R;
+import com.example.android.memoryapp.model.Memory;
 import android.content.Context;
-import android.database.Cursor;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,22 +10,15 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.Locale;
+import java.util.ArrayList;
 
 
 public class GreenAdapter extends RecyclerView.Adapter<GreenAdapter.NumberViewHolder> {
 
-    private Cursor mCursor;
     final private ListItemClickListener mOnClickListener;
+    private ArrayList<Memory> memories;
 
-
-    public GreenAdapter(Cursor cursor, ListItemClickListener listener) {
-        mCursor = cursor;
+    public GreenAdapter(ListItemClickListener listener) {
         mOnClickListener = listener;
     }
 
@@ -43,15 +35,11 @@ public class GreenAdapter extends RecyclerView.Adapter<GreenAdapter.NumberViewHo
     @Override
     public NumberViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
         Context context = viewGroup.getContext();
-
         int layoutIdForListItem = R.layout.list_item;
         LayoutInflater inflater = LayoutInflater.from(context);
         boolean shouldAttachToParentImmediately = false;
-
         View view = inflater.inflate(layoutIdForListItem, viewGroup, shouldAttachToParentImmediately);
         NumberViewHolder viewHolder = new NumberViewHolder(view);
-
-
         return viewHolder;
     }
 
@@ -67,11 +55,9 @@ public class GreenAdapter extends RecyclerView.Adapter<GreenAdapter.NumberViewHo
      */
     @Override
     public void onBindViewHolder(NumberViewHolder holder, int position) {
+        Memory selMemory =memories.get(position);
 
-        if (!mCursor.moveToPosition(position))
-            return; // bail if returned null
-        String title = mCursor.getString(1);
-        DayCounter count = new DayCounter(mCursor.getString(2));
+        DayCounter count = new DayCounter(selMemory.getDate());
         long noDays =  count.getDaysPassed();
         String daysString;
         if (noDays<0){
@@ -79,7 +65,8 @@ public class GreenAdapter extends RecyclerView.Adapter<GreenAdapter.NumberViewHo
         }else{
             daysString = Long.toString(noDays)+ " days ago ";
         }
-        holder.titleTextView.setText(title);
+
+        holder.titleTextView.setText(selMemory.getTitle());
         holder.daysPassedTextView.setText(daysString);
     }
 
@@ -93,7 +80,13 @@ public class GreenAdapter extends RecyclerView.Adapter<GreenAdapter.NumberViewHo
      */
     @Override
     public int getItemCount() {
-        return mCursor.getCount();
+        if (memories==null) return 0;
+        return memories.size();
+    }
+
+    public void setMemories(ArrayList<Memory> memories) {
+        this.memories = memories;
+        //notifyDataSetChanged();
     }
 
 
@@ -128,8 +121,9 @@ public class GreenAdapter extends RecyclerView.Adapter<GreenAdapter.NumberViewHo
          */
         @Override
         public void onClick(View v) {
-            int clickedPosition = getAdapterPosition();
-            mOnClickListener.onListItemClick(clickedPosition);
+            int adapterPosition = getAdapterPosition();
+            Memory selMemory = memories.get(adapterPosition);
+            mOnClickListener.onListItemClick(selMemory);
         }
     }
 }
