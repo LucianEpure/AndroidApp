@@ -35,33 +35,10 @@ public class OneMemoryDisplay extends AppCompatActivity {
     private TextView titleTextView;
     private ImageView imageView;
     private EditText descriptionTextView;
+    private Bitmap bitmap;
 
     CallbackManager callbackManager;
     ShareDialog shareDialog;
-
-    com.squareup.picasso.Target target = new com.squareup.picasso.Target() {
-        @Override
-        public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
-            SharePhoto sharePhoto = new SharePhoto.Builder()
-                    .setBitmap(bitmap)
-                    .build();
-            if (shareDialog.canShow(SharePhotoContent.class)) {
-                SharePhotoContent content = new SharePhotoContent.Builder()
-                        .addPhoto(sharePhoto)
-                        .build();
-                shareDialog.show(content);
-
-            }
-        }
-
-        @Override
-        public void onBitmapFailed(Drawable errorDrawable) {
-        }
-
-        @Override
-        public void onPrepareLoad(Drawable placeHolderDrawable) {
-        }
-    };
 
 
     @Override
@@ -86,7 +63,7 @@ public class OneMemoryDisplay extends AppCompatActivity {
         titleTextView.setText(memory.getTitle());
         descriptionTextView.setText(memory.getDescription());
 
-        Bitmap bitmap = BitmapFactory.decodeByteArray(memory.getImage(), 0, memory.getImage().length);
+        bitmap = BitmapFactory.decodeByteArray(memory.getImage(), 0, memory.getImage().length);
         imageView.setImageBitmap(bitmap);
     }
 
@@ -124,13 +101,23 @@ public class OneMemoryDisplay extends AppCompatActivity {
                 }
             });
 
-            Picasso.with(getBaseContext())
-                    .load("https://upload.wikimedia.org/wikipedia/en/2/21/Web_of_Spider-Man_Vol_1_129-1.png")
-                    .into(target);
-
+            if (bitmap!=null) shareImage();
         }
 
         return true;
 
     }
+
+    private void shareImage() {
+        SharePhoto sharePhoto = new SharePhoto.Builder()
+                .setBitmap(bitmap)
+                .build();
+        if (shareDialog.canShow(SharePhotoContent.class)) {
+            SharePhotoContent content = new SharePhotoContent.Builder()
+                    .addPhoto(sharePhoto)
+                    .build();
+            shareDialog.show(content);
+        }
+    }
+
 }
