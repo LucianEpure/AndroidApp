@@ -20,4 +20,7 @@
     <string name="facebook_login_app_protocol_scheme">fb143977473093837</string>
     <string name="share">Share</string>
     <string name="title_of_mem">Title of mem</string>
+    <string name="sort_new">Sort new first</string>
+    <string name="sort_old">Sort old first</string>
+    <string name="clear_memories">Clear all memories</string>
 </resources>

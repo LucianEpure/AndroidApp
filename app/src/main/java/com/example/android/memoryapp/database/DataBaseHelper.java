@@ -72,7 +72,7 @@ public class DataBaseHelper  extends SQLiteOpenHelper{
         }
     }
 
-    public boolean insertDataPerson(String name, String surname, String help, String image){
+    public boolean insertDataPerson(String name, String surname, String help, byte[] image){
         SQLiteDatabase sqLiteDatabase = instance.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(COL2_2,name);
@@ -153,8 +153,6 @@ public class DataBaseHelper  extends SQLiteOpenHelper{
 
     public boolean updateData(String id, String title, String date, String description, String image ){
         SQLiteDatabase sqLiteDatabase = instance.getWritableDatabase();
-    public boolean updateData(String id, String title, String date, String description, byte[] image ){
-        SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(COL1_1,id);
         contentValues.put(COL1_2,title);
