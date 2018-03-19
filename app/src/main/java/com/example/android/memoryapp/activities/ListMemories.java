@@ -11,7 +11,7 @@ import com.example.android.memoryapp.R;
 import com.example.android.memoryapp.database.DataBaseHelper;
 import com.example.android.memoryapp.model.Memory;
 import com.example.android.memoryapp.recyclePackage.ListItemClickListener;
-import com.example.android.memoryapp.recyclePackage.GreenAdapter;
+import com.example.android.memoryapp.recyclePackage.MemoryAdapter;
 
 import java.util.ArrayList;
 
@@ -19,7 +19,7 @@ public class  ListMemories extends AppCompatActivity
         implements ListItemClickListener {
 
 
-    private GreenAdapter myAdapter;
+    private MemoryAdapter myAdapter;
     private RecyclerView myNumbersList;
     private Intent displayMemIntent;
 
@@ -34,7 +34,7 @@ public class  ListMemories extends AppCompatActivity
         myNumbersList.setLayoutManager(layoutManager);
         Cursor cursor = dbHelper.getAllData("Memory");
 
-        myAdapter = new GreenAdapter(this);
+        myAdapter = new MemoryAdapter(this);
         myNumbersList.setAdapter(myAdapter);
 
         ArrayList<Memory> memories= DataBaseHelper.getInstance(ListMemories.this).getAllMemories();

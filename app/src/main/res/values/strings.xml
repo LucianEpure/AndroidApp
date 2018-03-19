@@ -20,4 +20,11 @@
     <string name="facebook_login_app_protocol_scheme">fb143977473093837</string>
     <string name="share">Share</string>
     <string name="title_of_mem">Title of mem</string>
+    <string name="who_s_there">Who\'s there?</string>
+    <string name="mark_as_known">Mark as known</string>
+    <string name="show_all_known">show all known</string>
+    <string name="show_all_unknown">show all unknown</string>
+    <string name="insert_lastname">Insert lastname</string>
+    <string name="insert_first_name">insert first name</string>
+    <string name="first_name">First name</string>
 </resources>

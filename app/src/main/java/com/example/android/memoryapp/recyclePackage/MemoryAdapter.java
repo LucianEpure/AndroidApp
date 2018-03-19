@@ -9,16 +9,15 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
 import java.util.ArrayList;
 
 
-public class GreenAdapter extends RecyclerView.Adapter<GreenAdapter.NumberViewHolder> {
+public class MemoryAdapter extends RecyclerView.Adapter<MemoryAdapter.MemoryViewHolder> {
 
     final private ListItemClickListener mOnClickListener;
     private ArrayList<Memory> memories;
 
-    public GreenAdapter(ListItemClickListener listener) {
+    public MemoryAdapter(ListItemClickListener listener) {
         mOnClickListener = listener;
     }
 
@@ -33,13 +32,13 @@ public class GreenAdapter extends RecyclerView.Adapter<GreenAdapter.NumberViewHo
      * @return A new NumberViewHolder that holds the View for each list item
      */
     @Override
-    public NumberViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
+    public MemoryViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
         Context context = viewGroup.getContext();
-        int layoutIdForListItem = R.layout.list_item;
+        int layoutIdForListItem = R.layout.list_memory;
         LayoutInflater inflater = LayoutInflater.from(context);
         boolean shouldAttachToParentImmediately = false;
         View view = inflater.inflate(layoutIdForListItem, viewGroup, shouldAttachToParentImmediately);
-        NumberViewHolder viewHolder = new NumberViewHolder(view);
+        MemoryViewHolder viewHolder = new MemoryViewHolder(view);
         return viewHolder;
     }
 
@@ -54,7 +53,7 @@ public class GreenAdapter extends RecyclerView.Adapter<GreenAdapter.NumberViewHo
      * @param position The position of the item within the adapter's data set.
      */
     @Override
-    public void onBindViewHolder(NumberViewHolder holder, int position) {
+    public void onBindViewHolder(MemoryViewHolder holder, int position) {
         Memory selMemory =memories.get(position);
 
         DayCounter count = new DayCounter(selMemory.getDate());
@@ -93,7 +92,7 @@ public class GreenAdapter extends RecyclerView.Adapter<GreenAdapter.NumberViewHo
     /**
      * Cache of the children views for a list item.
      */
-    class NumberViewHolder extends RecyclerView.ViewHolder implements OnClickListener {
+    class MemoryViewHolder extends RecyclerView.ViewHolder implements OnClickListener {
 
         TextView titleTextView;
         TextView daysPassedTextView;
@@ -104,7 +103,7 @@ public class GreenAdapter extends RecyclerView.Adapter<GreenAdapter.NumberViewHo
          * onClick method below.
          * @param itemView The View that you inflated in
          */
-        public NumberViewHolder(View itemView) {
+        public MemoryViewHolder(View itemView) {
             super(itemView);
 
             titleTextView = (TextView) itemView.findViewById(R.id.titleTextView);
