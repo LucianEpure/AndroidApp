@@ -10,6 +10,7 @@ public class Friend {
     private String lastName;
     private String helpInfo;
     private byte[] image;
+    private int known;
 
 
     public String toString(){
@@ -55,5 +56,13 @@ public class Friend {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public int getKnown() {
+        return known;
+    }
+
+    public void setKnown(int known) {
+        this.known = known;
     }
 }

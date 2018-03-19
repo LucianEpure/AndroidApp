@@ -7,11 +7,10 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import com.example.android.memoryapp.model.Friend;
 import com.example.android.memoryapp.model.Memory;
-import com.example.android.memoryapp.model.FriendBuilder;
-import com.example.android.memoryapp.model.MemoryBuilder;
+import com.example.android.memoryapp.model.builder.FriendBuilder;
+import com.example.android.memoryapp.model.builder.MemoryBuilder;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by Lucian on 13.03.2018.
@@ -34,6 +33,7 @@ public class DataBaseHelper  extends SQLiteOpenHelper{
     public static final String COL2_3 = "Surname";
     public static final String COL2_4 = "Help";
     public static final String COL2_5 = "Image";
+    public static final String COL2_6 = "Known";
 
     private DataBaseHelper(Context context) {
         super(context, DATABASE_NAME, null, 1);
@@ -42,7 +42,7 @@ public class DataBaseHelper  extends SQLiteOpenHelper{
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         sqLiteDatabase.execSQL(" create table " + TABLE_NAME1 + " (ID INTEGER PRIMARY KEY AUTOINCREMENT,TITLE TEXT,DATE TEXT,DESCRIPTION TEXT,IMAGE BLOB)"); //BLOB)
-        sqLiteDatabase.execSQL(" create table " + TABLE_NAME2 + " (ID INTEGER PRIMARY KEY AUTOINCREMENT,NAME TEXT,SURNAME TEXT,HELP TEXT,IMAGE BLOB)");
+        sqLiteDatabase.execSQL(" create table " + TABLE_NAME2 + " (ID INTEGER PRIMARY KEY AUTOINCREMENT,NAME TEXT,SURNAME TEXT,HELP TEXT,IMAGE BLOB, KNOWN BIT)");
 
     }
 
@@ -61,7 +61,7 @@ public class DataBaseHelper  extends SQLiteOpenHelper{
         contentValues.put(COL1_4,description);
         contentValues.put(COL1_5,image);
 
-       long result = sqLiteDatabase.insert("Memory",null,contentValues);
+       long result = sqLiteDatabase.insert("Memory",null, contentValues);
         if(result == -1) {
             sqLiteDatabase.close();
             return false;
@@ -72,13 +72,14 @@ public class DataBaseHelper  extends SQLiteOpenHelper{
         }
     }
 
-    public boolean insertDataPerson(String name, String surname, String help, String image){
+    public boolean insertDataPerson(String name, String surname, String help, byte[] image){
         SQLiteDatabase sqLiteDatabase = instance.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(COL2_2,name);
         contentValues.put(COL2_3,surname);
         contentValues.put(COL2_4,help);
         contentValues.put(COL2_5,image);
+        contentValues.put(COL2_6, 0);
         long result = sqLiteDatabase.insert("Person",null,contentValues);
         if(result == -1) {
             sqLiteDatabase.close();
@@ -151,10 +152,28 @@ public class DataBaseHelper  extends SQLiteOpenHelper{
         return memories;
     }
 
-    public boolean updateData(String id, String title, String date, String description, String image ){
+    public ArrayList<Friend> getAllFriends(){
         SQLiteDatabase sqLiteDatabase = instance.getWritableDatabase();
+        Cursor cursor = sqLiteDatabase.rawQuery(" select * from Person",null);
+        if (cursor.getCount() == 0) return null;
+
+        ArrayList<Friend> friends = new ArrayList<Friend>();
+        while(cursor.moveToNext()){
+           Friend friend = new FriendBuilder()
+                   .setId(cursor.getInt(0))
+                   .setFirstName(cursor.getString(1))
+                   .setLastName(cursor.getString(2))
+                   .setHelpInfo(cursor.getString(3))
+                   .setImage(cursor.getBlob(4))
+                   .setKnown(cursor.getInt(5))
+                   .build();
+           friends.add(friend);
+        }
+        return friends;
+    }
+
     public boolean updateData(String id, String title, String date, String description, byte[] image ){
-        SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
+        SQLiteDatabase sqLiteDatabase = instance.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(COL1_1,id);
         contentValues.put(COL1_2,title);

@@ -1,4 +1,4 @@
-package com.example.android.memoryapp.model;
+package com.example.android.memoryapp.model.builder;
 import com.example.android.memoryapp.model.Memory;
 /**
  * Created by Anca on 18/03/2018.
