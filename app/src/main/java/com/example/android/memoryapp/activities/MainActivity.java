@@ -44,15 +44,6 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(selPhoto);
             }
         });
-        databaseTestBtn = findViewById(R.id.databaseTest);
-        databaseTestBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent showMemory = new Intent(MainActivity.this,ShowMemory.class);
-                startActivity(showMemory);
-
-            }
-        });
 
         showMemoriesBtn = findViewById(R.id.showMemories);
         showMemoriesBtn.setOnClickListener(new View.OnClickListener() {

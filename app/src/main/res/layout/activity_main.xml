@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/January2"
     tools:context="com.example.android.memoryapp.MainActivity">
 
     <Button
@@ -14,6 +15,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="84dp"
         android:text="Save Memory"
+        android:textColor="@color/colorAccent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
@@ -22,17 +24,17 @@
     <Button
         android:id="@+id/showMemories"
         android:layout_width="162dp"
-        android:layout_height="wrap_content"
+        android:layout_height="46dp"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:text="Show Memories"
+        android:textColor="@color/colorAccent"
         app:layout_constraintBottom_toTopOf="@+id/rememberGame"
-        app:layout_constraintEnd_toStartOf="@+id/databaseTest"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/saveMemoryBtn"
-        app:layout_constraintVertical_bias="0.66" />
+        app:layout_constraintTop_toBottomOf="@+id/saveMemoryBtn" />
 
     <Button
         android:id="@+id/rememberGame"
@@ -42,22 +44,10 @@
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:text="Remember game"
+        android:textColor="@color/colorAccent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent" />
-
-    <Button
-        android:id="@+id/databaseTest"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:layout_marginBottom="8dp"
-        android:layout_marginTop="8dp"
-        android:text="@string/dbtest"
-        app:layout_constraintBottom_toTopOf="@+id/rememberGame"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/saveMemoryBtn"
-        app:layout_constraintVertical_bias="0.66" />
 
 </android.support.constraint.ConstraintLayout>
