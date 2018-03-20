@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".activities.OneMemoryDisplay">
+    <item
+        android:id="@+id/action_mark"
+        android:orderInCategory="1"
+        android:title="@string/mark_as_known"
+        app:showAsAction="ifRoom"/>
+    <item
+        android:id="@+id/action_showKnown"
+        android:orderInCategory="1"
+        android:title="@string/show_all_known"
+        app:showAsAction="ifRoom"/>
+    <item
+        android:id="@+id/action_showUnknown"
+        android:orderInCategory="1"
+        android:title="@string/show_all_unknown"
+        app:showAsAction="ifRoom"/>
+</menu>

@@ -23,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
     Button saveMemoryBtn;
     Button showMemoriesBtn;
     Button databaseTestBtn;
+    Button rememberGameBtn;
     private static final int MY_CAMERA_REQUEST = 1;
     private static final int MY_STORAGE_REQUEST = 2;
 
@@ -62,6 +63,14 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        rememberGameBtn = findViewById(R.id.rememberGame);
+        rememberGameBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent myIntent = new Intent(MainActivity.this, RememberGame.class);
+                startActivity(myIntent);
+            }
+        });
 
     }
 

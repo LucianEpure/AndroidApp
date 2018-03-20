@@ -40,6 +40,8 @@
             android:authorities="com.facebook.app.FacebookContentProvider143977473093837"
             android:exported="true" />
 
+        <activity android:name=".activities.RememberGame" />
+        <activity android:name=".activities.ListFriends"/>
         <activity android:name=".activities.EditMoment"></activity>
     </application>
 

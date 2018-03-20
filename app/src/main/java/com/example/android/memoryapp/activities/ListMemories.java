@@ -17,12 +17,7 @@ import com.example.android.memoryapp.R;
 import com.example.android.memoryapp.database.DataBaseHelper;
 import com.example.android.memoryapp.model.Memory;
 import com.example.android.memoryapp.recyclePackage.ListItemClickListener;
-import com.example.android.memoryapp.recyclePackage.GreenAdapter;
-import com.facebook.CallbackManager;
-import com.facebook.FacebookCallback;
-import com.facebook.FacebookException;
-import com.facebook.share.Sharer;
-import com.facebook.share.widget.ShareDialog;
+import com.example.android.memoryapp.recyclePackage.MemoryAdapter;
 
 import java.util.ArrayList;
 
@@ -30,12 +25,11 @@ public class  ListMemories extends AppCompatActivity
         implements ListItemClickListener {
 
 
-    private GreenAdapter myAdapter;
+    private MemoryAdapter myAdapter;
     private RecyclerView myNumbersList;
     private Intent displayMemIntent;
 
-    CallbackManager callbackManager;
-    ShareDialog sortNewDialog, sortOldDialog, clearDialog;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,7 +42,7 @@ public class  ListMemories extends AppCompatActivity
         myNumbersList.setLayoutManager(layoutManager);
         Cursor cursor = dbHelper.getAllData("Memory");
 
-        myAdapter = new GreenAdapter(this);
+        myAdapter = new MemoryAdapter(this);
         myNumbersList.setAdapter(myAdapter);
 
         ArrayList<Memory> memories= DataBaseHelper.getInstance(ListMemories.this).getAllMemories();
@@ -76,16 +70,12 @@ public class  ListMemories extends AppCompatActivity
         switch(itemThatWasClickedId) {
             case (R.id.action_sortNew):
                 // init callback
-                callbackManager = CallbackManager.Factory.create();
-                sortNewDialog = new ShareDialog(ListMemories.this);
 
 
                 //insert behavior
                 break;
             case (R.id.action_sortOld):
                 // init callback
-                callbackManager = CallbackManager.Factory.create();
-                sortOldDialog= new ShareDialog(ListMemories.this);
 
 
 

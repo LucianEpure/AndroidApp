@@ -139,8 +139,6 @@ public class DataBaseHelper  extends SQLiteOpenHelper{
         if (cursor.getCount() == 0) return null;
 
         ArrayList<Memory> memories = new ArrayList<Memory>();
-
-
         while(cursor.moveToNext()){
             Memory memory =new MemoryBuilder()
                     .setId(cursor.getInt(0))
@@ -173,6 +171,30 @@ public class DataBaseHelper  extends SQLiteOpenHelper{
         }
         return friends;
     }
+
+
+
+
+    public ArrayList<Friend> getAllFriendsWithKnownStatus(int status){
+        SQLiteDatabase sqLiteDatabase = instance.getWritableDatabase();
+        Cursor cursor = sqLiteDatabase.rawQuery(" select * from Person where Known = "+ status,null);
+        if (cursor.getCount() == 0) return null;
+
+        ArrayList<Friend> friends = new ArrayList<Friend>();
+        while(cursor.moveToNext()){
+            Friend friend = new FriendBuilder()
+                    .setId(cursor.getInt(0))
+                    .setFirstName(cursor.getString(1))
+                    .setLastName(cursor.getString(2))
+                    .setHelpInfo(cursor.getString(3))
+                    .setImage(cursor.getBlob(4))
+                    .setKnown(cursor.getInt(5))
+                    .build();
+            friends.add(friend);
+        }
+        return friends;
+    }
+
     //Memory/Moment update, returns an object of type Memory
     public Memory updateMemory(Memory memory){
         SQLiteDatabase sqLiteDatabase = instance.getWritableDatabase();
