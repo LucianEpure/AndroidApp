@@ -14,10 +14,10 @@ import java.util.ArrayList;
 
 public class MemoryAdapter extends RecyclerView.Adapter<MemoryAdapter.MemoryViewHolder> {
 
-    final private ListItemClickListener mOnClickListener;
+    final private MemoryClickListener mOnClickListener;
     private ArrayList<Memory> memories;
 
-    public MemoryAdapter(ListItemClickListener listener) {
+    public MemoryAdapter(MemoryClickListener listener) {
         mOnClickListener = listener;
     }
 

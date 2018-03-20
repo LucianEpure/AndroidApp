@@ -4,7 +4,7 @@ package com.example.android.memoryapp.model;
  * Created by Lucian on 15.03.2018.
  */
 
-public class Friend {
+public class Friend  {
     private int id;
     private String firstName;
     private String lastName;
@@ -64,5 +64,12 @@ public class Friend {
 
     public void setKnown(int known) {
         this.known = known;
+    }
+
+    public String getAllName(){
+        if (firstName.equals("") && lastName.equals("")) return "no name registered";
+        if (firstName.equals("")) return lastName;
+        if (lastName.equals("")) return firstName;
+        return firstName+" "+lastName;
     }
 }

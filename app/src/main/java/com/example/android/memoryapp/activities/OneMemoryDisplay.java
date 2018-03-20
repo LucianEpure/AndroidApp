@@ -1,11 +1,8 @@
 package com.example.android.memoryapp.activities;
 
 import android.content.Intent;
-import android.database.Cursor;
-import android.database.DatabaseErrorHandler;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.drawable.Drawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -14,7 +11,6 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.example.android.memoryapp.R;
 import com.example.android.memoryapp.database.DataBaseHelper;
 import com.example.android.memoryapp.model.Memory;
@@ -26,7 +22,6 @@ import com.facebook.share.Sharer;
 import com.facebook.share.model.SharePhoto;
 import com.facebook.share.model.SharePhotoContent;
 import com.facebook.share.widget.ShareDialog;
-import com.squareup.picasso.Picasso;
 
 
 

@@ -4,7 +4,7 @@ package com.example.android.memoryapp.model;
  * Created by Anca on 18/03/2018.
  */
 
-public class Memory {
+public class Memory{
     private int id;
     private String title;
     private String date;

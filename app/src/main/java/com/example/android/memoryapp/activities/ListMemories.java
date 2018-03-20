@@ -10,17 +10,17 @@ import android.support.v7.widget.RecyclerView;
 import com.example.android.memoryapp.R;
 import com.example.android.memoryapp.database.DataBaseHelper;
 import com.example.android.memoryapp.model.Memory;
-import com.example.android.memoryapp.recyclePackage.ListItemClickListener;
 import com.example.android.memoryapp.recyclePackage.MemoryAdapter;
+import com.example.android.memoryapp.recyclePackage.MemoryClickListener;
 
 import java.util.ArrayList;
 
 public class  ListMemories extends AppCompatActivity
-        implements ListItemClickListener {
+        implements MemoryClickListener {
 
 
     private MemoryAdapter myAdapter;
-    private RecyclerView myNumbersList;
+    private RecyclerView myMemList;
     private Intent displayMemIntent;
 
     @Override
@@ -28,14 +28,14 @@ public class  ListMemories extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_memories);
         DataBaseHelper dbHelper = DataBaseHelper.getInstance(ListMemories.this);
-        myNumbersList = (RecyclerView) findViewById(R.id.rv_numbers);
+        myMemList = (RecyclerView) findViewById(R.id.rv_memories);
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-        myNumbersList.setLayoutManager(layoutManager);
+        myMemList.setLayoutManager(layoutManager);
         Cursor cursor = dbHelper.getAllData("Memory");
 
         myAdapter = new MemoryAdapter(this);
-        myNumbersList.setAdapter(myAdapter);
+        myMemList.setAdapter(myAdapter);
 
         ArrayList<Memory> memories= DataBaseHelper.getInstance(ListMemories.this).getAllMemories();
         myAdapter.setMemories(memories);

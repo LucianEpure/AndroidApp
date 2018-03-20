@@ -6,6 +6,6 @@ import com.example.android.memoryapp.model.Memory;
  * The interface that receives onClick messages.
  */
 
-public interface ListItemClickListener {
-    void onListItemClick(Memory memory);
+public interface MemoryClickListener {
+    void onListItemClick(Memory myObject);
 }

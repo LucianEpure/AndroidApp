@@ -27,4 +27,5 @@
     <string name="insert_lastname">Insert lastname</string>
     <string name="insert_first_name">insert first name</string>
     <string name="first_name">First name</string>
+    <string name="name_of_the_friend">name of the friend</string>
 </resources>

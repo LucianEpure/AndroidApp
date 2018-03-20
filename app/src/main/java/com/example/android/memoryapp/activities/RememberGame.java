@@ -53,10 +53,7 @@ public class RememberGame extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 String typedName = giveNameView.getText().toString().toLowerCase();
-                String savedName;
-                if (currentFriend.getLastName().equals("")) savedName= currentFriend.getFirstName().toLowerCase();
-                else if (currentFriend.getFirstName().equals("")) savedName = currentFriend.getLastName().toLowerCase();
-                else savedName = currentFriend.getFirstName().toLowerCase() +" "+ currentFriend.getLastName().toLowerCase();
+                String savedName = currentFriend.getAllName().toLowerCase();
 
                 if (typedName.equals(savedName)){
                     Toast.makeText(RememberGame.this, "Good job!", Toast.LENGTH_LONG).show();
@@ -72,11 +69,7 @@ public class RememberGame extends AppCompatActivity {
         seeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String savedName;
-                if (currentFriend.getLastName().equals("")) savedName= currentFriend.getFirstName().toLowerCase();
-                else if (currentFriend.getFirstName().equals("")) savedName = currentFriend.getLastName().toLowerCase();
-                else savedName = currentFriend.getFirstName().toLowerCase() +" "+ currentFriend.getLastName().toLowerCase();
-
+                String savedName= currentFriend.getAllName();
                 giveNameView.setText(savedName.toUpperCase());
             }
         });
