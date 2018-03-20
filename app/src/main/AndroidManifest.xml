@@ -41,7 +41,8 @@
             android:exported="true" />
 
         <activity android:name=".activities.RememberGame" />
-        <activity android:name=".activities.ListFriends"></activity>
+        <activity android:name=".activities.ListFriends"/>
+        <activity android:name=".activities.EditMoment"></activity>
     </application>
 
 </manifest>

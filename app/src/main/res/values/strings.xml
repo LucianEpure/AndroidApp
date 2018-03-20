@@ -28,4 +28,8 @@
     <string name="insert_first_name">insert first name</string>
     <string name="first_name">First name</string>
     <string name="name_of_the_friend">name of the friend</string>
+    <string name="sort_new">Sort new first</string>
+    <string name="sort_old">Sort old first</string>
+    <string name="clear_memories">Clear all memories</string>
+    <string name="title_activity_edit_moment">EditMoment</string>
 </resources>

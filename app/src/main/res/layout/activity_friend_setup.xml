@@ -10,54 +10,54 @@
         android:id="@+id/firstNameTv"
         android:layout_width="187dp"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="36dp"
         android:text="@string/first_name"
         android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/firstNameEt"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.154"
+        app:layout_constraintHorizontal_bias="0.254"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
 
     <EditText
         android:id="@+id/firstNameEt"
         android:layout_width="216dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
+        android:layout_marginBottom="20dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
         android:ems="10"
         android:hint="@string/insert_first_name"
         android:inputType="textPersonName"
         android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/lastNameTv"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.184"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/firstNameTv"
-        app:layout_constraintVertical_bias="0.615" />
+        app:layout_constraintHorizontal_bias="0.302"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/helptInfoTv"
         android:layout_width="wrap_content"
         android:layout_height="39dp"
-        android:layout_marginBottom="12dp"
+        android:layout_marginBottom="16dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:hint="@string/help_info"
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/helpInfoEt"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.143"
+        app:layout_constraintHorizontal_bias="0.169"
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
         android:id="@+id/helpInfoEt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="132dp"
+        android:layout_marginBottom="144dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:ems="10"
@@ -104,21 +104,21 @@
         android:id="@+id/lastNameTv"
         android:layout_width="182dp"
         android:layout_height="32dp"
-        android:layout_marginBottom="36dp"
+        android:layout_marginBottom="16dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:text="Last name"
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/lastNameEt"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.15"
+        app:layout_constraintHorizontal_bias="0.247"
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
         android:id="@+id/lastNameEt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="28dp"
+        android:layout_marginBottom="16dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:ems="10"
@@ -126,7 +126,7 @@
         android:hint="@string/insert_lastname"
         app:layout_constraintBottom_toTopOf="@+id/helptInfoTv"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.183"
+        app:layout_constraintHorizontal_bias="0.3"
         app:layout_constraintStart_toStartOf="parent" />
 
 </android.support.constraint.ConstraintLayout>
