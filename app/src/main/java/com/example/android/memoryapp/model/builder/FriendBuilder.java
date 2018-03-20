@@ -1,4 +1,4 @@
-package com.example.android.memoryapp.model;
+package com.example.android.memoryapp.model.builder;
 
 import com.example.android.memoryapp.model.Friend;
 /**
@@ -37,8 +37,15 @@ public class FriendBuilder {
         return this;
     }
 
+    public FriendBuilder setKnown(int val){
+        friend.setKnown(val);
+        return this;
+    }
+
     public Friend build(){
         return this.friend;
     }
+
+
 
 }

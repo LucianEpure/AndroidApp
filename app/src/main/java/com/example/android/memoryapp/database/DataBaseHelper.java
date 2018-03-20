@@ -5,13 +5,14 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.widget.Toast;
+
 import com.example.android.memoryapp.model.Friend;
 import com.example.android.memoryapp.model.Memory;
-import com.example.android.memoryapp.model.FriendBuilder;
-import com.example.android.memoryapp.model.MemoryBuilder;
+import com.example.android.memoryapp.model.builder.FriendBuilder;
+import com.example.android.memoryapp.model.builder.MemoryBuilder;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by Lucian on 13.03.2018.
@@ -34,6 +35,7 @@ public class DataBaseHelper  extends SQLiteOpenHelper{
     public static final String COL2_3 = "Surname";
     public static final String COL2_4 = "Help";
     public static final String COL2_5 = "Image";
+    public static final String COL2_6 = "Known";
 
     private DataBaseHelper(Context context) {
         super(context, DATABASE_NAME, null, 1);
@@ -42,7 +44,7 @@ public class DataBaseHelper  extends SQLiteOpenHelper{
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         sqLiteDatabase.execSQL(" create table " + TABLE_NAME1 + " (ID INTEGER PRIMARY KEY AUTOINCREMENT,TITLE TEXT,DATE TEXT,DESCRIPTION TEXT,IMAGE BLOB)"); //BLOB)
-        sqLiteDatabase.execSQL(" create table " + TABLE_NAME2 + " (ID INTEGER PRIMARY KEY AUTOINCREMENT,NAME TEXT,SURNAME TEXT,HELP TEXT,IMAGE BLOB)");
+        sqLiteDatabase.execSQL(" create table " + TABLE_NAME2 + " (ID INTEGER PRIMARY KEY AUTOINCREMENT,NAME TEXT,SURNAME TEXT,HELP TEXT,IMAGE BLOB, KNOWN BIT)");
 
     }
 
@@ -61,7 +63,7 @@ public class DataBaseHelper  extends SQLiteOpenHelper{
         contentValues.put(COL1_4,description);
         contentValues.put(COL1_5,image);
 
-       long result = sqLiteDatabase.insert("Memory",null,contentValues);
+       long result = sqLiteDatabase.insert("Memory",null, contentValues);
         if(result == -1) {
             sqLiteDatabase.close();
             return false;
@@ -79,6 +81,7 @@ public class DataBaseHelper  extends SQLiteOpenHelper{
         contentValues.put(COL2_3,surname);
         contentValues.put(COL2_4,help);
         contentValues.put(COL2_5,image);
+        contentValues.put(COL2_6, 0);
         long result = sqLiteDatabase.insert("Person",null,contentValues);
         if(result == -1) {
             sqLiteDatabase.close();
@@ -151,22 +154,82 @@ public class DataBaseHelper  extends SQLiteOpenHelper{
         return memories;
     }
 
-    public boolean updateData(String id, String title, String date, String description, String image ){
+    public ArrayList<Friend> getAllFriends(){
+        SQLiteDatabase sqLiteDatabase = instance.getWritableDatabase();
+        Cursor cursor = sqLiteDatabase.rawQuery(" select * from Person",null);
+        if (cursor.getCount() == 0) return null;
+
+        ArrayList<Friend> friends = new ArrayList<Friend>();
+        while(cursor.moveToNext()){
+           Friend friend = new FriendBuilder()
+                   .setId(cursor.getInt(0))
+                   .setFirstName(cursor.getString(1))
+                   .setLastName(cursor.getString(2))
+                   .setHelpInfo(cursor.getString(3))
+                   .setImage(cursor.getBlob(4))
+                   .setKnown(cursor.getInt(5))
+                   .build();
+           friends.add(friend);
+        }
+        return friends;
+    }
+    //Memory/Moment update, returns an object of type Memory
+    public Memory updateMemory(Memory memory){
         SQLiteDatabase sqLiteDatabase = instance.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
-        contentValues.put(COL1_1,id);
-        contentValues.put(COL1_2,title);
-        contentValues.put(COL1_3,date);
-        contentValues.put(COL1_4,description);
-        contentValues.put(COL1_5,image);
-        sqLiteDatabase.update(TABLE_NAME1,contentValues,"id = ?", new String[] {id});
-        return true;
+        contentValues.put(COL1_1, memory.getId());
+        contentValues.put(COL1_2,memory.getTitle());
+        contentValues.put(COL1_3,memory.getDate());
+        contentValues.put(COL1_4,memory.getDescription());
+        contentValues.put(COL1_5,memory.getImage());
+        long result = sqLiteDatabase.update(TABLE_NAME1,contentValues,"Id = ?", new String[] {Integer.toString(memory.getId())});
+        Memory updatedMemory = getMemoryById(memory.getId());
+        if(result == -1) {
+            sqLiteDatabase.close();
+            return null;
+        }
+        else {
+            sqLiteDatabase.close();
+            return updatedMemory;
+        }
     }
 
-    public Integer deleteData(String id){
+    //Friend update, returns an object of type Friend
+    public Friend updateFriend(Friend friend){
         SQLiteDatabase sqLiteDatabase = instance.getWritableDatabase();
-        return sqLiteDatabase.delete(TABLE_NAME1," ID = ? ", new String[]{id});
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(COL1_1, friend.getId());
+        contentValues.put(COL1_2,friend.getFirstName());
+        contentValues.put(COL1_3,friend.getLastName());
+        contentValues.put(COL1_4,friend.getHelpInfo());
+        contentValues.put(COL1_5,friend.getImage());
+        contentValues.put(COL2_6,friend.getKnown());
+        long result = sqLiteDatabase.update(TABLE_NAME2,contentValues,"Id = ?", new String[] {Integer.toString(friend.getId())});
+        Friend updatedFriend = getFriendById(friend.getId());
+        if(result == -1) {
+            sqLiteDatabase.close();
+            return null;
+        }
+        else {
+            sqLiteDatabase.close();
+            return updatedFriend;
+        }
+    }
 
+    public Integer deleteMemory(int id){
+        SQLiteDatabase sqLiteDatabase = instance.getWritableDatabase();
+        return sqLiteDatabase.delete(TABLE_NAME1," ID = ? ", new String[]{Integer.toString(id)});
+
+    }
+    public Integer deleteFriend(int id){
+        SQLiteDatabase sqLiteDatabase = instance.getWritableDatabase();
+        return sqLiteDatabase.delete(TABLE_NAME2," ID = ? ", new String[]{Integer.toString(id)});
+
+    }
+
+    public void deleteAllData(String table){
+        SQLiteDatabase sqLiteDatabase = instance.getWritableDatabase();
+        sqLiteDatabase.delete(table,null,null);
     }
 
     public static DataBaseHelper getInstance(Context context){

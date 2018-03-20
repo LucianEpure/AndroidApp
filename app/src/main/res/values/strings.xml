@@ -23,4 +23,5 @@
     <string name="sort_new">Sort new first</string>
     <string name="sort_old">Sort old first</string>
     <string name="clear_memories">Clear all memories</string>
+    <string name="title_activity_edit_moment">EditMoment</string>
 </resources>

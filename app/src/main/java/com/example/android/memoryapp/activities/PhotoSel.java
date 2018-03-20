@@ -89,7 +89,7 @@ public class PhotoSel extends AppCompatActivity {
                     InputStream inputStream = cr.openInputStream(imageUri);
                     Bitmap bitmap = BitmapFactory.decodeStream(inputStream);
                     ByteArrayOutputStream baos = new ByteArrayOutputStream();
-                    bitmap.compress(Bitmap.CompressFormat.JPEG, 50, baos);
+                    bitmap.compress(Bitmap.CompressFormat.JPEG, 10, baos);
                     imageByte = baos.toByteArray();
                 } catch (FileNotFoundException e) {
                     e.printStackTrace();
@@ -100,7 +100,7 @@ public class PhotoSel extends AppCompatActivity {
                     Bitmap thumbnail = MediaStore.Images.Media.getBitmap(
                             getContentResolver(), imageUri2);
                     ByteArrayOutputStream baos = new ByteArrayOutputStream();
-                    thumbnail.compress(Bitmap.CompressFormat.JPEG, 20, baos);
+                    thumbnail.compress(Bitmap.CompressFormat.JPEG, 10, baos);
                     imageByte = baos.toByteArray();
                     photoView.setImageBitmap(thumbnail);
                 } catch (Exception e) {

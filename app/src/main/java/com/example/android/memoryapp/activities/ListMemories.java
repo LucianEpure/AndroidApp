@@ -1,8 +1,10 @@
 package com.example.android.memoryapp.activities;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -76,23 +78,7 @@ public class  ListMemories extends AppCompatActivity
                 // init callback
                 callbackManager = CallbackManager.Factory.create();
                 sortNewDialog = new ShareDialog(ListMemories.this);
-                sortNewDialog.registerCallback(callbackManager, new FacebookCallback<Sharer.Result>() {
-                    @Override
-                    public void onSuccess(Sharer.Result result) {
-                        Toast.makeText(ListMemories.this, "Sort new succesful", Toast.LENGTH_SHORT).show();
-                    }
 
-                    @Override
-                    public void onCancel() {
-                        Toast.makeText(ListMemories.this, "Sort canceled", Toast.LENGTH_SHORT).show();
-                    }
-
-                    @Override
-                    public void onError(FacebookException error) {
-                        Toast.makeText(ListMemories.this, error.getMessage(), Toast.LENGTH_SHORT).show();
-
-                    }
-                });
 
                 //insert behavior
                 break;
@@ -101,48 +87,15 @@ public class  ListMemories extends AppCompatActivity
                 callbackManager = CallbackManager.Factory.create();
                 sortOldDialog= new ShareDialog(ListMemories.this);
 
-                sortOldDialog.registerCallback(callbackManager, new FacebookCallback<Sharer.Result>() {
-                    @Override
-                    public void onSuccess(Sharer.Result result) {
-                        Toast.makeText(ListMemories.this, "Sort old successful", Toast.LENGTH_SHORT).show();
-                    }
 
-                    @Override
-                    public void onCancel() {
-                        Toast.makeText(ListMemories.this, "Sort canceled", Toast.LENGTH_SHORT).show();
-                    }
-
-                    @Override
-                    public void onError(FacebookException error) {
-                        Toast.makeText(ListMemories.this, error.getMessage(), Toast.LENGTH_SHORT).show();
-
-                    }
-                });
 
                 //insert behavior
                 break;
             case (R.id.action_clearMem):
                 // init callback
-                callbackManager = CallbackManager.Factory.create();
-                clearDialog = new ShareDialog(ListMemories.this);
+                deleteDialog();
 
-                clearDialog.registerCallback(callbackManager, new FacebookCallback<Sharer.Result>() {
-                    @Override
-                    public void onSuccess(Sharer.Result result) {
-                        Toast.makeText(ListMemories.this, "Clear memories successful", Toast.LENGTH_SHORT).show();
-                    }
 
-                    @Override
-                    public void onCancel() {
-                        Toast.makeText(ListMemories.this, "Clear canceled", Toast.LENGTH_SHORT).show();
-                    }
-
-                    @Override
-                    public void onError(FacebookException error) {
-                        Toast.makeText(ListMemories.this, error.getMessage(), Toast.LENGTH_SHORT).show();
-
-                    }
-                });
                 //insert behaviors
                 break;
 
@@ -150,5 +103,27 @@ public class  ListMemories extends AppCompatActivity
 
         return true;
 
+    }
+    protected void deleteDialog(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(ListMemories.this);
+        builder.setMessage("All the data will be erased. Are you sure?");
+        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                DataBaseHelper db = DataBaseHelper.getInstance(ListMemories.this);
+                db.deleteAllData("Memory");
+                finish();
+                startActivity(getIntent());
+            }
+        });
+        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                dialogInterface.dismiss();
+
+            }
+        });
+
+        builder.show();
     }
 }

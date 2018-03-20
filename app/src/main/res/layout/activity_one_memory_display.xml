@@ -18,22 +18,23 @@
 
     <ImageView
         android:id="@+id/imageOneMem"
-        android:layout_width="262dp"
-        android:layout_height="271dp"
-        android:layout_marginBottom="44dp"
+        android:layout_width="282dp"
+        android:layout_height="240dp"
+        android:layout_marginTop="20dp"
         android:src="@android:color/holo_orange_dark"
-        app:layout_constraintBottom_toTopOf="@+id/scrollView3"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent" />
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/titleOneMem" />
 
     <ScrollView
         android:id="@+id/scrollView3"
         android:layout_width="290dp"
-        android:layout_height="137dp"
-        android:layout_marginBottom="8dp"
+        android:layout_height="91dp"
+        android:layout_marginBottom="52dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -57,4 +58,18 @@
                 app:layout_constraintVertical_bias="0.647" />
         </LinearLayout>
     </ScrollView>
+
+    <TextView
+        android:id="@+id/dateTv"
+        android:layout_width="147dp"
+        android:layout_height="29dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="TextView"
+        app:layout_constraintBottom_toTopOf="@+id/scrollView3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageOneMem" />
 </android.support.constraint.ConstraintLayout>

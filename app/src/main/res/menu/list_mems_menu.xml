@@ -2,7 +2,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".activities.OneMemoryDisplay">
+    tools:context=".activities.ListMemories">
     <item
         android:id="@+id/action_sortNew"
         android:orderInCategory="1"
