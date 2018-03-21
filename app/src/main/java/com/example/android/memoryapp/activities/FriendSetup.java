@@ -42,6 +42,7 @@ public class FriendSetup extends AppCompatActivity {
                     Toast.makeText( FriendSetup.this,"Friend Added",Toast.LENGTH_LONG).show();
                 else
                     Toast.makeText( FriendSetup.this,"Friend Not Added!",Toast.LENGTH_LONG).show();
+                finish();
             }
         });
         cancelBtn = findViewById(R.id.cancelBtn);

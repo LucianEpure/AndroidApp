@@ -1,6 +1,8 @@
 package com.example.android.memoryapp.activities;
 
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -42,7 +44,7 @@ public class ListFriends extends AppCompatActivity {
         myAdapter.setFriends(friends);
 
 
-        new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
+        new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT ) {
             @Override
             public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder target) {
                 //do nothing, we only care about swiping
@@ -60,14 +62,39 @@ public class ListFriends extends AppCompatActivity {
                 String val;
                 if (newStatus==1) val ="known";
                 else val = "unknown";
-                Toast.makeText(ListFriends.this, selFriend.getAllName()+ "marked as "+val , Toast.LENGTH_SHORT).show();
+                Toast.makeText(ListFriends.this, selFriend.getAllName().toUpperCase()+ " marked as "+val , Toast.LENGTH_SHORT).show();
 
-                //dbHelper.updateFriend(selFriend);
+                dbHelper.updateFriend(selFriend);
                 recreate();
             }
 
         }).attachToRecyclerView(myFriendsListRecycleView);
 
+        new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.RIGHT) {
+            @Override
+            public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder target) {
+                return false;
+            }
+
+            @Override
+            public void onSwiped(RecyclerView.ViewHolder viewHolder, int swipeDir) {
+                int id = (int) viewHolder.itemView.getTag();
+                DataBaseHelper dbHelper= DataBaseHelper.getInstance(ListFriends.this);
+                Friend selFriend = dbHelper.getFriendById(id);
+                dbHelper.deleteFriend(selFriend.getId());
+                Toast.makeText(ListFriends.this, selFriend.getAllName().toUpperCase()+ " deleted ", Toast.LENGTH_SHORT).show();
+                recreate();
+            }
+
+        }).attachToRecyclerView(myFriendsListRecycleView);
+    }
+
+
+    public void onBackPressed(){
+        finish();
+        Intent intent = new Intent(ListFriends.this, RememberGame.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
     }
 
 }
