@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorPrimaryDark">#303f9f</color>
     <color name="colorAccent">#3e7bd0</color>
     <color name="fadingE">#10d69d</color>
     <color name="fadingS">#045b45</color>
     <color name="button">#f5f0be</color>
+    <color name="field">#ffffa5</color>
 </resources>
