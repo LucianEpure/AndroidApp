@@ -40,7 +40,6 @@ public class RememberGame extends AppCompatActivity {
         friends = DataBaseHelper.getInstance(RememberGame.this).getAllFriendsWithKnownStatus(0);
         if (friends==null){
             Toast.makeText(RememberGame.this, "No friends saved", Toast.LENGTH_LONG).show();
-            finish();
         }else {
             imageView = (ImageView) findViewById(R.id.imageFriend);
             giveNameView = (EditText) findViewById(R.id.giveName);
@@ -56,11 +55,11 @@ public class RememberGame extends AppCompatActivity {
                 String savedName = currentFriend.getAllName().toLowerCase();
 
                 if (typedName.equals(savedName)){
-                    Toast.makeText(RememberGame.this, "Good job!", Toast.LENGTH_LONG).show();
+                    Toast.makeText(RememberGame.this, "Good job!", Toast.LENGTH_SHORT).show();
                     setRandomFriend();
                     setRound();
                 }else{
-                    Toast.makeText(RememberGame.this,"That's not right, buddy!", Toast.LENGTH_LONG).show();
+                    Toast.makeText(RememberGame.this,"That's not right, buddy!", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -78,7 +77,9 @@ public class RememberGame extends AppCompatActivity {
         infoBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(RememberGame.this, currentFriend.getHelpInfo(), Toast.LENGTH_LONG).show();
+                String info =currentFriend.getHelpInfo();
+                if (info.equals("")) info = "no help info given";
+                Toast.makeText(RememberGame.this, info, Toast.LENGTH_LONG).show();
             }
         });
         }
@@ -109,10 +110,9 @@ public class RememberGame extends AppCompatActivity {
             case (R.id.action_mark):
                 currentFriend.setKnown(1);
                 friends.remove(currentFriend);
-                //DataBaseHelper.getInstance().updateFriend(currentFriend);
+                DataBaseHelper.getInstance(RememberGame.this).updateFriend(currentFriend);
                 if (friends.size()==0){
                     Toast.makeText(RememberGame.this, "No friends saved", Toast.LENGTH_LONG).show();
-                    finish();
                 }
                 break;
             case (R.id.action_showKnown):

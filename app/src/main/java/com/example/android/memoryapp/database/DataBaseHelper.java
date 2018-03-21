@@ -220,11 +220,11 @@ public class DataBaseHelper  extends SQLiteOpenHelper{
     public Friend updateFriend(Friend friend){
         SQLiteDatabase sqLiteDatabase = instance.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
-        contentValues.put(COL1_1, friend.getId());
-        contentValues.put(COL1_2,friend.getFirstName());
-        contentValues.put(COL1_3,friend.getLastName());
-        contentValues.put(COL1_4,friend.getHelpInfo());
-        contentValues.put(COL1_5,friend.getImage());
+        contentValues.put(COL2_1, friend.getId());
+        contentValues.put(COL2_2,friend.getFirstName());
+        contentValues.put(COL2_3,friend.getLastName());
+        contentValues.put(COL2_4,friend.getHelpInfo());
+        contentValues.put(COL2_5,friend.getImage());
         contentValues.put(COL2_6,friend.getKnown());
         long result = sqLiteDatabase.update(TABLE_NAME2,contentValues,"Id = ?", new String[] {Integer.toString(friend.getId())});
         Friend updatedFriend = getFriendById(friend.getId());
