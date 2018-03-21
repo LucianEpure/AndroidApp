@@ -5,12 +5,8 @@ import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Canvas;
-import android.graphics.Matrix;
-import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.provider.MediaStore;
 import android.support.v7.app.AlertDialog;
@@ -19,7 +15,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.Toast;
+
 
 import com.example.android.memoryapp.R;
 
@@ -31,15 +27,16 @@ import java.util.Base64;
 
 public class PhotoSel extends AppCompatActivity {
 
-    Button rotateBtn;
-    Button momentBtn;
-    Button friendBtn;
-    ImageView photoView;
-    public  Uri imageUri;
-    public Uri imageUri2;
-    public  byte[] imageByte;
+    private Button rotateBtn;
+    private Button momentBtn;
+    private Button friendBtn;
+    private ImageView photoView;
+    private Uri imageUri;
+    private Uri imageUri2;
+    private  byte[] imageByte;
     private static final int PICK_IMAGE = 100;
     private static final int PICTURE_RESULT = 200;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -110,16 +107,10 @@ public class PhotoSel extends AppCompatActivity {
             }
         }
     }
-
+    //If the select from gallery was chosen
     public void onSelectFromGalleryResult(){
         Intent gallery = new Intent(Intent.ACTION_PICK,MediaStore.Images.Media.INTERNAL_CONTENT_URI);
         startActivityForResult(gallery,PICK_IMAGE);
-    }
-
-    public static byte[] getBitmapAsByteArray(Bitmap bitmap) {
-        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.PNG, 0, outputStream);
-        return outputStream.toByteArray();
     }
 
 //dialog asking where to choose photo from
@@ -147,19 +138,5 @@ public class PhotoSel extends AppCompatActivity {
                 }
             });
             builder.show();
-    }
-
-    public Bitmap rotateBitmap(Bitmap original, float degrees) {
-        int width = original.getWidth();
-        int height = original.getHeight();
-
-        Matrix matrix = new Matrix();
-        photoView.setScaleType(ImageView.ScaleType.MATRIX);
-
-        Bitmap rotatedBitmap = Bitmap.createBitmap(original, 0, 0, width, height, matrix, true);
-        Canvas canvas = new Canvas(rotatedBitmap);
-        canvas.drawBitmap(original, 5.0f, 0.0f, null);
-
-        return rotatedBitmap;
     }
 }

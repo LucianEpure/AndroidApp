@@ -4,7 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.android.memoryapp.PhotoSel">
+    android:background="@drawable/gradient"
+    android:fadingEdge="vertical"
+    android:visibility="visible"
+    tools:context="com.example.android.memoryapp.activities.PhotoSel">
 
     <ImageView
         android:id="@+id/photoView"
@@ -20,16 +23,19 @@
 
     <Button
         android:id="@+id/momentBtn"
-        android:layout_width="115dp"
+        android:layout_width="124dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="32dp"
-        android:layout_marginStart="32dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginStart="48dp"
         android:layout_marginTop="8dp"
+        android:background="@color/com_facebook_button_border_color_focused"
+        android:elevation="12dp"
         android:text="Moment"
+        android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/photoView"
-        app:layout_constraintVertical_bias="0.82" />
+        app:layout_constraintTop_toBottomOf="@+id/rotateBtn"
+        app:layout_constraintVertical_bias="0.488" />
 
     <Button
         android:id="@+id/friendBtn"
@@ -39,13 +45,12 @@
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
+        android:background="@color/com_facebook_button_border_color_focused"
         android:text="Friend"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.762"
         app:layout_constraintStart_toEndOf="@+id/momentBtn"
-        app:layout_constraintTop_toBottomOf="@+id/photoView"
-        app:layout_constraintVertical_bias="0.626" />
+        app:layout_constraintTop_toBottomOf="@+id/rotateBtn" />
 
     <Button
         android:id="@+id/rotateBtn"
@@ -55,6 +60,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
+        android:background="@color/com_facebook_button_border_color_focused"
         android:text="Rotate"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

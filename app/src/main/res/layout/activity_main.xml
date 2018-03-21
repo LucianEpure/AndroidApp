@@ -9,13 +9,15 @@
 
     <Button
         android:id="@+id/saveMemoryBtn"
-        android:layout_width="185dp"
+        android:layout_width="190dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="84dp"
+        android:background="@color/button"
+        android:elevation="12dp"
         android:text="Save Memory"
-        android:textColor="@color/colorAccent"
+        android:textColor="@color/fadingS"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
@@ -23,18 +25,21 @@
 
     <Button
         android:id="@+id/showMemories"
-        android:layout_width="162dp"
+        android:layout_width="182dp"
         android:layout_height="46dp"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
+        android:background="@color/button"
+        android:elevation="12dp"
         android:text="Show Memories"
-        android:textColor="@color/colorAccent"
+        android:textColor="@color/fadingS"
         app:layout_constraintBottom_toTopOf="@+id/rememberGame"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/saveMemoryBtn" />
+        app:layout_constraintTop_toBottomOf="@+id/saveMemoryBtn"
+        tools:textColor="@color/fadingS" />
 
     <Button
         android:id="@+id/rememberGame"
@@ -43,8 +48,11 @@
         android:layout_marginBottom="108dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
+        android:background="@color/button"
+        android:elevation="12dp"
         android:text="Remember game"
-        android:textColor="@color/colorAccent"
+        android:textColor="@color/fadingS"
+        android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.502"

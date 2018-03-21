@@ -20,21 +20,17 @@ import com.example.android.memoryapp.database.DataBaseHelper;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button saveMemoryBtn;
-    Button showMemoriesBtn;
-    Button databaseTestBtn;
-    Button rememberGameBtn;
+    private Button saveMemoryBtn;
+    private Button showMemoriesBtn;
+    private Button rememberGameBtn;
     private static final int MY_CAMERA_REQUEST = 1;
-    private static final int MY_STORAGE_REQUEST = 2;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        DataBaseHelper myDbHelper = DataBaseHelper.getInstance(MainActivity.this);
         getPermissions();
-
-
 
         saveMemoryBtn = findViewById(R.id.saveMemoryBtn);
         saveMemoryBtn.setOnClickListener(new View.OnClickListener() {
@@ -65,16 +61,14 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    //Obtain permissions for camera and external storage
     public void getPermissions() {
-        /* Check and Request permission */
         if ((ContextCompat.checkSelfPermission(MainActivity.this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED)&&(ContextCompat.checkSelfPermission(MainActivity.this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED))
         {
             ActivityCompat.requestPermissions(MainActivity.this,
                     new String[]{Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE},
                     MY_CAMERA_REQUEST);
         }
-
-
     }
 
     @Override
@@ -84,24 +78,11 @@ public class MainActivity extends AppCompatActivity {
                 // If request is cancelled, the result arrays are empty.
                 if (grantResults.length > 0
                         && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-
-                    // permission was granted, yay! Do the
-                    // contacts-related task you need to do.
-
                 } else {
-
-                    // permission denied, boo! Disable the
-                    // functionality that depends on this permission..
                     Toast.makeText(MainActivity.this, "Permission denied to get Camera", Toast.LENGTH_SHORT).show();
-
                 }
                 return;
             }
-
-            // other 'case' lines to check for other
-            // permissions this app might request
         }
     }
-
-
 }

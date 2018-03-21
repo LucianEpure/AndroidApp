@@ -22,13 +22,13 @@ import java.util.GregorianCalendar;
 
 public class MomentSetup extends AppCompatActivity implements DatePickerDialog.OnDateSetListener{
 
-    Button saveBtn;
-    Button cancelBtn;
-    Button pickDateBtn;
-    TextView showDate;
-    EditText title;
-    EditText description;
-    byte[] imageByte;
+    private Button saveBtn;
+    private Button cancelBtn;
+    private Button pickDateBtn;
+    private TextView showDate;
+    private EditText title;
+    private EditText description;
+    private byte[] imageByte;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +40,11 @@ public class MomentSetup extends AppCompatActivity implements DatePickerDialog.O
         description = findViewById(R.id.descriptionEt);
         Intent myIntent = getIntent();                  //retrieve the image from the previous activity
         imageByte = myIntent.getByteArrayExtra("image");
+        Calendar calendar = new GregorianCalendar();
+        calendar.getTime();
+        final DateFormat dateFormat = DateFormat.getDateInstance(DateFormat.MEDIUM);
+        showDate.setText(dateFormat.format(calendar.getTime()));
+
         pickDateBtn.setOnClickListener( new View.OnClickListener(){
 
             @Override
@@ -70,13 +75,13 @@ public class MomentSetup extends AppCompatActivity implements DatePickerDialog.O
         cancelBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                dialog();
+                dialogCancel();
             }
         });
     }
 
     //cancel button functionality
-    protected void dialog(){
+    protected void dialogCancel(){
         AlertDialog.Builder builder = new AlertDialog.Builder(MomentSetup.this);
         builder.setMessage("Are you sure?");
         builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
