@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/January2"
-    tools:context="com.example.android.memoryapp.MainActivity">
+    android:background="@drawable/januar"
+    tools:context="com.example.android.memoryapp.activities.MainActivity">
 
     <Button
         android:id="@+id/saveMemoryBtn"

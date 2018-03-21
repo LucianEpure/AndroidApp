@@ -17,32 +17,55 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
             android:value="@string/facebook_ap_id" />
 
-        <activity android:name=".activities.MainActivity">
+        <activity android:name=".activities.MainActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
-        <activity android:name=".activities.MomentSetup" />
-        <activity android:name=".activities.FriendSetup" />
-        <activity android:name=".activities.PhotoSel" />
-        <activity android:name=".activities.ListMemories" />
-        <activity android:name=".activities.OneMemoryDisplay" />
-        <activity android:name=".activities.ShowMemory" />
+        <activity android:name=".activities.MomentSetup"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".activities.FriendSetup"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".activities.PhotoSel"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".activities.ListMemories"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".activities.OneMemoryDisplay"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".activities.ShowMemory"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait" />
 
         <provider
             android:name="com.facebook.FacebookContentProvider"
             android:authorities="com.facebook.app.FacebookContentProvider143977473093837"
             android:exported="true" />
 
-        <activity android:name=".activities.RememberGame" />
-        <activity android:name=".activities.ListFriends"/>
-        <activity android:name=".activities.EditMoment"></activity>
+        <activity android:name=".activities.RememberGame"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".activities.ListFriends"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".activities.EditMoment"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"></activity>
     </application>
 
 </manifest>
