@@ -97,11 +97,13 @@ public class DataBaseHelper  extends SQLiteOpenHelper{
     public Cursor getAllData(String tableName){
         SQLiteDatabase sqLiteDatabase = instance.getWritableDatabase();
         Cursor res = sqLiteDatabase.rawQuery(" select * from "+ tableName,null);
+        sqLiteDatabase.close();
         return res;
     }
     public Cursor getDataById(String tableName, String id){
         SQLiteDatabase sqLiteDatabase = instance.getReadableDatabase();
         Cursor res = sqLiteDatabase.rawQuery("SELECT * FROM "+ tableName + " WHERE Id = " + id,null );
+        sqLiteDatabase.close();
         return res;
     }
 
@@ -116,6 +118,7 @@ public class DataBaseHelper  extends SQLiteOpenHelper{
                 .setHelpInfo(cursor.getString(3))
                 .setImage(cursor.getBlob(4))
                 .build();
+        sqLiteDatabase.close();
         return friend;
     }
 
@@ -130,6 +133,7 @@ public class DataBaseHelper  extends SQLiteOpenHelper{
                 .setDescription(cursor.getString(3))
                 .setImage(cursor.getBlob(4))
                 .build();
+        sqLiteDatabase.close();
         return memory;
     }
 
@@ -149,6 +153,7 @@ public class DataBaseHelper  extends SQLiteOpenHelper{
                     .build();
             memories.add(memory);
         }
+        sqLiteDatabase.close();
         return memories;
     }
 
@@ -169,6 +174,7 @@ public class DataBaseHelper  extends SQLiteOpenHelper{
                    .build();
            friends.add(friend);
         }
+        sqLiteDatabase.close();
         return friends;
     }
 
@@ -192,6 +198,7 @@ public class DataBaseHelper  extends SQLiteOpenHelper{
                     .build();
             friends.add(friend);
         }
+        sqLiteDatabase.close();
         return friends;
     }
 
@@ -252,6 +259,7 @@ public class DataBaseHelper  extends SQLiteOpenHelper{
     public void deleteAllData(String table){
         SQLiteDatabase sqLiteDatabase = instance.getWritableDatabase();
         sqLiteDatabase.delete(table,null,null);
+        sqLiteDatabase.close();
     }
 
     public static DataBaseHelper getInstance(Context context){
@@ -259,6 +267,7 @@ public class DataBaseHelper  extends SQLiteOpenHelper{
             instance = new DataBaseHelper(context);
             return instance;
         }
+
         return instance;
     }
 

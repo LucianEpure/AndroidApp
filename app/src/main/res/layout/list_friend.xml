@@ -13,7 +13,7 @@
         android:layout_marginLeft="16dp"
         android:layout_weight="1"
         android:fontFamily="sans-serif"
-        android:textSize="20sp"
-        android:text="@string/name_of_the_friend"/>
+        android:text="@string/name_of_the_friend"
+        android:textSize="20sp" />
 
 </LinearLayout>

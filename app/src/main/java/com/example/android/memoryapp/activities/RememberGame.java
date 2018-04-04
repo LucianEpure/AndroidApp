@@ -87,8 +87,12 @@ public class RememberGame extends AppCompatActivity {
 
     private void setRandomFriend(){
         int index = rand.nextInt(friends.size());
-        currentFriend = friends.get(index);
+        if (friends.size()>1){
+            if (currentFriend != friends.get(index)) currentFriend = friends.get(index);
+            else setRandomFriend();
+        } else  currentFriend = friends.get(index);
     }
+
     private void setRound(){
         bitmap = BitmapFactory.decodeByteArray(currentFriend.getImage(), 0, currentFriend.getImage().length);
         imageView.setImageBitmap(bitmap);
@@ -128,4 +132,17 @@ public class RememberGame extends AppCompatActivity {
         }
         return true;
     }
+    @Override
+    protected void onDestroy() {
+        //android.os.Process.killProcess(android.os.Process.myPid());
+
+        super.onDestroy();
+        if(bitmap!=null)
+        {
+            bitmap.recycle();
+            bitmap=null;
+        }
+
+    }
+    
 }
