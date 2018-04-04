@@ -27,7 +27,7 @@ import java.util.Base64;
 
 public class PhotoSel extends AppCompatActivity {
 
-    private Button rotateBtn;
+
     private Button momentBtn;
     private Button friendBtn;
     private ImageView photoView;
@@ -43,13 +43,6 @@ public class PhotoSel extends AppCompatActivity {
         setContentView(R.layout.activity_photo_sel);
         dialog();
         photoView = findViewById(R.id.photoView);
-        rotateBtn = findViewById(R.id.rotateBtn);
-        rotateBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                photoView.setRotation(90);
-            }
-        });
 
         momentBtn = findViewById(R.id.momentBtn);
         momentBtn.setOnClickListener(new View.OnClickListener() {

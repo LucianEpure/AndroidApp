@@ -86,9 +86,21 @@ public class RememberGame extends AppCompatActivity {
     }
 
     private void setRandomFriend(){
+        Friend prev = currentFriend;
+
         int index = rand.nextInt(friends.size());
-        currentFriend = friends.get(index);
+        Friend tryFriend = friends.get(index);
+
+        if (friends.size()>1) {
+            while (tryFriend.equals(prev)) {
+                index = rand.nextInt(friends.size());
+                tryFriend = friends.get(index);
+            }
+        }
+        currentFriend = tryFriend;
     }
+
+
     private void setRound(){
         bitmap = BitmapFactory.decodeByteArray(currentFriend.getImage(), 0, currentFriend.getImage().length);
         imageView.setImageBitmap(bitmap);

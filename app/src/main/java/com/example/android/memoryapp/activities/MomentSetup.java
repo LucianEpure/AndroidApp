@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import com.example.android.memoryapp.R;
 import com.example.android.memoryapp.database.DataBaseHelper;
+import com.example.android.memoryapp.database.DateConversions;
 
 import java.text.DateFormat;
 import java.util.Calendar;
@@ -60,7 +61,9 @@ public class MomentSetup extends AppCompatActivity implements DatePickerDialog.O
             @Override
             public void onClick(View view) {
                 boolean isInserted;
-                isInserted = DataBaseHelper.getInstance(MomentSetup.this).insertDataMemory(title.getText().toString() , showDate.getText().toString(),description.getText().toString(),imageByte);
+                DateConversions dateConversions = new DateConversions();
+                String dateSql = dateConversions.getSQLFormattedDate(showDate.getText().toString());
+                isInserted = DataBaseHelper.getInstance(MomentSetup.this).insertDataMemory(title.getText().toString() , dateSql,description.getText().toString(),imageByte);
                 if(isInserted == true)
                     Toast.makeText( MomentSetup.this,"Moment added!",Toast.LENGTH_LONG).show();
                 else

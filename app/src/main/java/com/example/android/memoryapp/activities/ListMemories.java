@@ -67,30 +67,9 @@ public class  ListMemories extends AppCompatActivity
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int itemThatWasClickedId = item.getItemId();
-        switch(itemThatWasClickedId) {
-            case (R.id.action_sortNew):
-                // init callback
-
-
-                //insert behavior
-                break;
-            case (R.id.action_sortOld):
-                // init callback
-
-
-
-                //insert behavior
-                break;
-            case (R.id.action_clearMem):
-                // init callback
-                deleteDialog();
-
-
-                //insert behaviors
-                break;
-
-        }
-
+       if ( itemThatWasClickedId==R.id.action_clearMem) {
+           deleteDialog();
+       }
         return true;
 
     }

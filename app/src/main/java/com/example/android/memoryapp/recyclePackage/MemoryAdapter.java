@@ -1,4 +1,5 @@
 package com.example.android.memoryapp.recyclePackage;
+import com.example.android.memoryapp.database.DateConversions;
 import com.example.android.memoryapp.model.DayCounter;
 import com.example.android.memoryapp.R;
 import com.example.android.memoryapp.model.Memory;
@@ -10,6 +11,7 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import java.util.ArrayList;
+import java.util.Date;
 
 
 public class MemoryAdapter extends RecyclerView.Adapter<MemoryAdapter.MemoryViewHolder> {
@@ -54,10 +56,11 @@ public class MemoryAdapter extends RecyclerView.Adapter<MemoryAdapter.MemoryView
      */
     @Override
     public void onBindViewHolder(MemoryViewHolder holder, int position) {
-        Memory selMemory =memories.get(position);
-
-        DayCounter count = new DayCounter(selMemory.getDate());
-        long noDays =  count.getDaysPassed();
+        Memory selMemory = memories.get(position);
+        DateConversions dateConversions = new DateConversions();
+        Date date = dateConversions.getDateFromSQLFormat(selMemory.getDate());
+        DayCounter counter = new DayCounter(date);
+        long noDays =  counter.getDaysPassed();
         String daysString;
         if (noDays<0){
             daysString = Long.toString(0-noDays)+" days from today " ;
@@ -68,7 +71,6 @@ public class MemoryAdapter extends RecyclerView.Adapter<MemoryAdapter.MemoryView
         holder.titleTextView.setText(selMemory.getTitle());
         holder.daysPassedTextView.setText(daysString);
     }
-
 
 
     /**

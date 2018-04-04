@@ -7,7 +7,7 @@ import com.example.android.memoryapp.R;
 import com.example.android.memoryapp.database.DataBaseHelper;
 import com.example.android.memoryapp.model.Memory;
 import com.example.android.memoryapp.model.builder.MemoryBuilder;
-
+import com.example.android.memoryapp.database.DateConversions;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -92,10 +92,13 @@ public class EditMoment extends AppCompatActivity implements DatePickerDialog.On
     protected void updateData(){
         DataBaseHelper db = DataBaseHelper.getInstance(EditMoment.this);
         Memory memory = db.getMemoryById(id);
+        DateConversions dateConversions = new DateConversions();
+        String dateSQL = dateConversions.getSQLFormattedDate(dateTextView.getText().toString());
+
         Memory updateMemory = new MemoryBuilder()
                 .setId(id)
                 .setTitle(titleEditText.getText().toString())
-                .setDate(dateTextView.getText().toString())
+                .setDate(dateSQL)
                 .setDescription(descEditText.getText().toString())
                 .setImage(memory.getImage())
                 .build();

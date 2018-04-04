@@ -1,5 +1,6 @@
 package com.example.android.memoryapp.activities;
 
+
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.AlertDialog;
@@ -79,16 +80,11 @@ public class ListFriends extends AppCompatActivity {
             @Override
             public void onSwiped(RecyclerView.ViewHolder viewHolder, int swipeDir) {
                 int id = (int) viewHolder.itemView.getTag();
-                DataBaseHelper dbHelper= DataBaseHelper.getInstance(ListFriends.this);
-                Friend selFriend = dbHelper.getFriendById(id);
-                dbHelper.deleteFriend(selFriend.getId());
-                Toast.makeText(ListFriends.this, selFriend.getAllName().toUpperCase()+ " deleted ", Toast.LENGTH_SHORT).show();
-                recreate();
+                deleteDialog(id);
             }
 
         }).attachToRecyclerView(myFriendsListRecycleView);
     }
-
 
     public void onBackPressed(){
         finish();
@@ -97,4 +93,26 @@ public class ListFriends extends AppCompatActivity {
         startActivity(intent);
     }
 
+
+    protected void deleteDialog(final int id){
+        AlertDialog.Builder builder = new AlertDialog.Builder(ListFriends.this);
+        builder.setMessage("Friend will be deleted. Are you sure?");
+        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                DataBaseHelper dbHelper = DataBaseHelper.getInstance(ListFriends.this);
+                dbHelper.deleteFriend(id);
+                dialogInterface.dismiss();
+                recreate();
+            }
+        }).setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                dialogInterface.dismiss();
+                recreate();
+            }
+        });
+
+        builder.show();
+    }
 }

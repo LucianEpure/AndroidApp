@@ -135,7 +135,7 @@ public class DataBaseHelper  extends SQLiteOpenHelper{
 
     public ArrayList<Memory> getAllMemories(){
         SQLiteDatabase sqLiteDatabase = instance.getWritableDatabase();
-        Cursor cursor = sqLiteDatabase.rawQuery(" select * from Memory",null);
+        Cursor cursor = sqLiteDatabase.rawQuery(" select * from Memory ORDER BY date ASC",null);
         if (cursor.getCount() == 0) return null;
 
         ArrayList<Memory> memories = new ArrayList<Memory>();
