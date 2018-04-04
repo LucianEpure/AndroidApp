@@ -68,7 +68,9 @@ public class MemoryAdapter extends RecyclerView.Adapter<MemoryAdapter.MemoryView
             daysString = Long.toString(noDays)+ " days ago ";
         }
 
-        holder.titleTextView.setText(selMemory.getTitle());
+        String title= selMemory.getTitle();
+        if (title.equals("")) title= "no title inserted";
+        holder.titleTextView.setText(title);
         holder.daysPassedTextView.setText(daysString);
     }
 
