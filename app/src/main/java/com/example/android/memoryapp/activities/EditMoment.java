@@ -57,9 +57,10 @@ public class EditMoment extends AppCompatActivity implements DatePickerDialog.On
          date = editData.getString("date");
          desc = editData.getString("desc");
 
+        DateConversions dateConversions = new DateConversions();
         titleEditText.setText(title);
         descEditText.setText(desc);
-        dateTextView.setText(date);
+        dateTextView.setText(dateConversions.getAppFormatFromSQL(date));
         pickDateBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -93,7 +94,9 @@ public class EditMoment extends AppCompatActivity implements DatePickerDialog.On
         DataBaseHelper db = DataBaseHelper.getInstance(EditMoment.this);
         Memory memory = db.getMemoryById(id);
         DateConversions dateConversions = new DateConversions();
-        String dateSQL = dateConversions.getSQLFormattedDate(dateTextView.getText().toString());
+        String dateSQL;
+        if (dateTextView.getText()==null) dateSQL= memory.getDate();
+        else dateSQL = dateConversions.getSQLFormattedDate(dateTextView.getText().toString());
 
         Memory updateMemory = new MemoryBuilder()
                 .setId(id)

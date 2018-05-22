@@ -19,7 +19,6 @@ import java.util.ArrayList;
  */
 
 public class DataBaseHelper  extends SQLiteOpenHelper{
-    //Our database name and columns
     private static DataBaseHelper instance;
 
     public static final String DATABASE_NAME = "Memory.db";
@@ -40,14 +39,12 @@ public class DataBaseHelper  extends SQLiteOpenHelper{
     private DataBaseHelper(Context context) {
         super(context, DATABASE_NAME, null, 1);
     }
-
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         sqLiteDatabase.execSQL(" create table " + TABLE_NAME1 + " (ID INTEGER PRIMARY KEY AUTOINCREMENT,TITLE TEXT,DATE TEXT,DESCRIPTION TEXT,IMAGE BLOB)"); //BLOB)
         sqLiteDatabase.execSQL(" create table " + TABLE_NAME2 + " (ID INTEGER PRIMARY KEY AUTOINCREMENT,NAME TEXT,SURNAME TEXT,HELP TEXT,IMAGE BLOB, KNOWN BIT)");
 
     }
-
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS "+TABLE_NAME1);

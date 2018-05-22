@@ -158,7 +158,7 @@ public class OneMemoryDisplay extends AppCompatActivity {
 
         builder.show();
     }
-
+    @Override
     protected void onDestroy() {
         //android.os.Process.killProcess(android.os.Process.myPid());
 

@@ -140,7 +140,6 @@ public class RememberGame extends AppCompatActivity {
         }
         return true;
     }
-    @Override
     protected void onDestroy() {
         //android.os.Process.killProcess(android.os.Process.myPid());
 

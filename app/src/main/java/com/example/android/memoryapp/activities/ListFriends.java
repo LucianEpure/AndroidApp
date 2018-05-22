@@ -29,7 +29,7 @@ public class ListFriends extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_friends);
         myFriendsListRecycleView = (RecyclerView) findViewById(R.id.rv_friends);
-
+        final DataBaseHelper dataBaseHelper = DataBaseHelper.getInstance(ListFriends.this);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         myFriendsListRecycleView.setLayoutManager(layoutManager);
 
@@ -41,7 +41,7 @@ public class ListFriends extends AppCompatActivity {
         myAdapter = new FriendAdapter(ListFriends.this);
         myFriendsListRecycleView.setAdapter(myAdapter);
 
-        ArrayList<Friend> friends= DataBaseHelper.getInstance(ListFriends.this).getAllFriendsWithKnownStatus(status);
+        ArrayList<Friend> friends= dataBaseHelper.getAllFriendsWithKnownStatus(status);
         myAdapter.setFriends(friends);
 
 
@@ -55,8 +55,8 @@ public class ListFriends extends AppCompatActivity {
             @Override
             public void onSwiped(RecyclerView.ViewHolder viewHolder, int swipeDir) {
                 int id = (int) viewHolder.itemView.getTag();
-                DataBaseHelper dbHelper= DataBaseHelper.getInstance(ListFriends.this);
-                Friend selFriend = dbHelper.getFriendById(id);
+                //DataBaseHelper dbHelper= DataBaseHelper.getInstance(ListFriends.this);
+                Friend selFriend = dataBaseHelper.getFriendById(id);
                 int newStatus = 1 -status;
                 selFriend.setKnown(newStatus);
 
@@ -65,7 +65,7 @@ public class ListFriends extends AppCompatActivity {
                 else val = "unknown";
                 Toast.makeText(ListFriends.this, selFriend.getAllName().toUpperCase()+ " marked as "+val , Toast.LENGTH_SHORT).show();
 
-                dbHelper.updateFriend(selFriend);
+                dataBaseHelper.updateFriend(selFriend);
                 recreate();
             }
 

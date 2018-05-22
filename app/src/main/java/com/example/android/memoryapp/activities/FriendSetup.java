@@ -25,7 +25,7 @@ public class FriendSetup extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_friend_setup);
-
+        final DataBaseHelper dataBaseHelper = DataBaseHelper.getInstance(FriendSetup.this);
         firstNameEt = findViewById(R.id.firstNameEt);
         lastNameEt = findViewById(R.id.lastNameEt);
         helpInfoEt = findViewById(R.id.helpInfoEt);
@@ -37,7 +37,7 @@ public class FriendSetup extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 boolean isInserted;
-                isInserted = DataBaseHelper.getInstance(FriendSetup.this).insertDataPerson(firstNameEt.getText().toString(),lastNameEt.getText().toString(),helpInfoEt.getText().toString(),imageByte);
+                isInserted = dataBaseHelper.insertDataPerson(firstNameEt.getText().toString(),lastNameEt.getText().toString(),helpInfoEt.getText().toString(),imageByte);
                 if(isInserted == true)
                     Toast.makeText( FriendSetup.this,"Friend Added",Toast.LENGTH_LONG).show();
                 else
